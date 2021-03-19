@@ -232,7 +232,7 @@ width = 750 - margin.left - margin.right,
 height = 400 - margin.top - margin.bottom;
 
 
-diameter =  320
+diameter =  330
 
 // Adds the svg canvas
 var chart1 = d3.select("#bubble")
@@ -284,7 +284,7 @@ legend.selectAll("mylabels")
 .append("text")
   .attr("x", 10 + size*1.5)
   .attr("y", function(d,i){ return 30 + i*(size+5) + (size/2) + 1}) // 100 is where the first dot appears. 25 is the distance between dots
-  .style("fill", function(d){ return color(d)})
+  .style("fill", "black")
   .text(function(d){ return d})
   .attr("text-anchor", "left")
   .style("alignment-baseline", "middle")
@@ -430,8 +430,21 @@ var tip = d3.tip()
 .html((d, i) => {
   const item = d.data
   const color = myColor(i)
-  return `<div class="d3-tip" style="background-color: ${color}"> ${item.Classe} <br>
-  Total de Homicídios:  ${new Intl.NumberFormat('de-DE').format(item.Sum)}</div><div class="d3-stem" style="border-color: ${color} transparent transparent transparent"></div>`
+  var a = ''
+  if (item.Classe == "HNN"){
+    return `<div class="d3-tip" style="background-color: ${color}"> Homem Não Negro <br>
+  Total de Homicídios:  ${new Intl.NumberFormat('de-DE').format(item.Sum)}</div><div class="d3-stem" style="border-color: ${color} transparent transparent transparent"></div>`  }
+  if (item.Classe == "HN"){
+    return `<div class="d3-tip" style="background-color: ${color}"> Homem Negro <br>
+    Total de Homicídios:  ${new Intl.NumberFormat('de-DE').format(item.Sum)}</div><div class="d3-stem" style="border-color: ${color} transparent transparent transparent"></div>`  }
+  if (item.Classe == "MNN"){
+    return `<div class="d3-tip" style="background-color: ${color}"> Mulher Não Negra <br>
+    Total de Homicídios:  ${new Intl.NumberFormat('de-DE').format(item.Sum)}</div><div class="d3-stem" style="border-color: ${color} transparent transparent transparent"></div>`  }
+  if (item.Classe == "MN"){
+    return `<div class="d3-tip" style="background-color: ${color}"> Mulher Negra <br>
+  Total de Homicídios:  ${new Intl.NumberFormat('de-DE').format(item.Sum)}</div><div class="d3-stem" style="border-color: ${color} transparent transparent transparent"></div>`  }
+
+  
 })
 
 var bubble = d3.pack(dataDict)
@@ -698,8 +711,9 @@ var node = chart1.selectAll(".node")
 
 node.append("title")
   .text(function(d) {
-    return d.Classe + ": " + d.Sum;
-  });
+    return d.Classe;
+  })
+
 
 node.append("circle")
   .attr("r", function(d) {
@@ -720,9 +734,8 @@ node.call(tip);
 node.append("text")
 .attr("dy", "0.2em")
 .style("text-anchor", "middle")
-.style('font-family', 'Roboto')
-.style('font-weight', '100')
-.style('font-size', 20)
+.style('font-weight', '80')
+.style('font-size', 17)
 .text(function(d) {
     return d.data.Classe.substring(0, d.r / 3);
   })
@@ -730,7 +743,7 @@ node.append("text")
   .attr("font-size", function(d) {
     return d.r / 5;
   })
-.style("fill", "#ffffff")
+.style("fill", "black")
 .style('pointer-events', 'none');
 
 
