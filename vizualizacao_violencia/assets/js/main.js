@@ -223,32 +223,102 @@
 // * ----------------- CODE FOR THE TIMELINE GRAPH *--------------// 
 
 var margin = {
-  top: 60,
-  right: 100,
-  bottom: 20,
+  top:50,
+  right: 115,
+  bottom: 50,
   left: 80
 },
-width = 850 - margin.left - margin.right,
-height = 370 - margin.top - margin.bottom;
+width = 750 - margin.left - margin.right,
+height = 400 - margin.top - margin.bottom;
 
 
+diameter =  320
 
-// append the svg object to the body of the page
-var svg = d3.select("#line-graph-HNN")
+// Adds the svg canvas
+var chart1 = d3.select("#bubble")
+  .append("svg")
+  .attr("width", diameter)
+  .attr("height", diameter)
+  .attr("class", "bubble");
+
+
+// Adds the svg canvas
+var	chart2 = d3.select("#line")
 .append("svg")
-.style("width", width + margin.left + margin.right + "px")
-.style("height", height + margin.top + margin.bottom + "px")
-.attr("width", width + margin.left + margin.right)
-.attr("height", height + margin.top + margin.bottom)
+  .attr("width", width + margin.left + margin.right)
+  .attr("height", height + margin.top + margin.bottom)
 .append("g")
-.attr("transform", "translate(" + margin.left + "," + margin.top + ")")
-.attr("class", "svg");
+  .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+var	legend = d3.select("#legend")
+.append("svg")
+  .attr("width", 250)
+  .attr("height", 150)
 
 
+// create a list of keys
+var keys = ["Homens Não Negros (HNN)", "Homens Negros (HNN)", "Mulheres Não Negras (MNN)", "Mulheres Negras (MN)"]
+
+// Usually you have a color scale in your chart already
+var color = d3.scaleOrdinal()
+.domain(keys)
+.range(['#663796', '#a554a7', '#c3455b', '#93003a'])
+
+// Add one dot in the legend for each name.
+var size = 20
+legend.selectAll("mydots")
+.data(keys)
+.enter()
+.append("rect")
+  .attr("x", 10)
+  .attr("y", function(d,i){ return 30 + i*(size+5)}) // 100 is where the first dot appears. 25 is the distance between dots
+  .attr("width", size)
+  .attr("height", size)
+  .style("fill", function(d){ return color(d)})
+
+    // Add one dot in the legend for each name.
+var size = 20
+legend.selectAll("mylabels")
+.data(keys)
+.enter()
+.append("text")
+  .attr("x", 10 + size*1.5)
+  .attr("y", function(d,i){ return 30 + i*(size+5) + (size/2) + 1}) // 100 is where the first dot appears. 25 is the distance between dots
+  .style("fill", function(d){ return color(d)})
+  .text(function(d){ return d})
+  .attr("text-anchor", "left")
+  .style("alignment-baseline", "middle")
+
+
+  toggleText = function(classe) {
+    console.log(classe)
+    if (classe === "HNN") {
+      d3.select(".text_hero")
+      .transition()
+      .duration(1500)
+      .text('Ao longo dos anos, a quantidade de homicídios no Brasil de Homens Não Negros diminuiu.');}
+    if (classe === "HN") {
+      d3.select(".text_hero")
+      .transition()
+      .duration(1500)
+      .text('Ao contrário de estastísticas de homícidos na população que diminuiram ao longo do tempo, a violência contra Homens Negros aumentou consideravelmente ao logo dos 7 anos');}
+    if (classe === "MNN") {
+      d3.select(".text_hero")
+      .transition()
+      .duration(1500)
+      .text('A violência contra a mulher não negra se manteve praticamente estável no Brasil, mostrando o quanto essa classe racial ainda sofre uma grande influencia pelos preconceitos de genêro que não diminuiu ao longo dos anos');}
+    if (classe === "MN") {
+      d3.select(".text_hero")
+      .transition()
+      .duration(1500)
+      .text('No caso de Mulheres Negras a quantidade de Homicídios quase dobrou ao longo dos anos de 2000-2017 ');}
+    }
 
 
 d3.csv("https://raw.githubusercontent.com/liasucf/proj_vizualizacao/main/dados_vizualizacao_proj_final.csv", function(data) {
-let parseDate = d3.timeParse("%Y")
+var parseDate = d3.timeParse("%Y")
+  bisectDate = d3.bisector(function(d) {return new Date(d.date); }).left;
+var dateFormatter = d3.timeFormat("%Y");
 
 data.forEach(function(d) {
   d.periodo = parseDate(d.período)
@@ -268,7 +338,6 @@ var nest = d3.nest()
     return d.classe;
   })
   .key(function(d) {
-    //console.log(d.periodo)
     return d.periodo
   })
   .rollup(function(leaves) {
@@ -283,7 +352,6 @@ var nest = d3.nest()
 
 var sumMap = new Map()
 nest.forEach(function(d) {
-  //console.log(d.values)
 
   sumMap.set(d.key, d.values)
 
@@ -298,12 +366,10 @@ var y = d3.scaleLinear()
 
 var line = d3.line()
   .x(function(d) {
-    //console.log((x(new Date(d.key))))
     return (x(new Date(d.key)));
   })
 
   .y(function(d) {
-    //console.log(d.value.sum)
     return (y(d.value.sum));
   });
 
@@ -311,56 +377,89 @@ var line = d3.line()
 updatesScales = function(classe) {
   var allSums = []
   sumMap.get(classe).forEach(function(d) {
-    //console.log(d.value.sum)
     allSums.push(d.value.sum)
 
     return allSums
   })
-  console.log(d3.max(allSums, d => d))
   y.domain([0, d3.max(allSums, d => d)])
 }
-
-//console.log(sumMap.get('HNN'))
-// Create 1st dropdown
-var classeMenu = d3.select("#classeDropdown")
-classeMenu
-  .append("select")
-  .selectAll("option")
-  .data(nest)
-  .enter()
-  .append("option")
-  .attr("value", function(d) {
-    return d.key;
-  })
-  .text(function(d) {
-    return d.key;
-  })
 
 
 
 var allClasses = d3.map(nest, function(d) {
   return (d.key)
 }).keys()
-console.log(allClasses)
 var myColor = d3.scaleOrdinal()
   .domain(allClasses)
-  .range(d3.schemeSet2);
+  .range(['#663796', '#a554a7', '#c3455b', '#93003a']
+  );
+var nestB = d3.nest()
+  .key(function(d) {
+    return d.classe;
+  })
+  .rollup(function(leaves) {
+    var sum = d3.sum(leaves, function(d) {
+      return d.valor
+    })
+    return {
+      sum: sum
+    };
+  })
+  .entries(data)
 
-console.log(myColor("HNN"))
+var dataJson = []
+nestB.forEach(function(d) {
+  for (var i in d.value)
+    var soma = d.value[i]
+  a = {
+    "Classe": d.key,
+    "Sum": soma
+  }
+  dataJson.push(a)
+  return dataJson
+})
+
+var dataDict = {
+  children: dataJson
+}
+
+
+
+var tip = d3.tip()
+.attr('class', 'd3-tip-outer')
+.html((d, i) => {
+  const item = d.data
+  const color = myColor(i)
+  return `<div class="d3-tip" style="background-color: ${color}"> ${item.Classe} <br>
+  Total de Homicídios:  ${new Intl.NumberFormat('de-DE').format(item.Sum)}</div><div class="d3-stem" style="border-color: ${color} transparent transparent transparent"></div>`
+})
+
+var bubble = d3.pack(dataDict)
+  .size([diameter, diameter])
+  .padding(1.5);
+
+
+var nodes = d3.hierarchy(dataDict)
+  .sum(function(d) {
+    return d.Sum;
+  });
+
+
+
+
+
 // Function to create the initial graph
 var initialGraph = function(classe) {
 
   updatesScales(classe)
-
-  const path = svg.selectAll(".line")
+  toggleText(classe)
+  const path = chart2.selectAll(".line")
     .data(function(d) {
-      //console.log(sumMap.get(classe))
       return [sumMap.get(classe)];
     })
     .enter()
     .append("path")
     .attr("d", function(d) {
-      //console.log(d)
       return line(d)
     })
     .attr("fill", "none")
@@ -369,7 +468,8 @@ var initialGraph = function(classe) {
     })
     .attr("stroke-linejoin", "round")
     .attr("stroke-linecap", "round")
-    .attr("stroke-width", 4.5)
+    .attr("stroke-width", 1.5)
+
     .attr("class", "line")
   // Add path
 
@@ -386,84 +486,257 @@ var initialGraph = function(classe) {
     .transition(transitionPath)
     .attr("stroke-dashoffset", 0);
 
-  svg.append("g")
+  chart2.append("g")
     .attr("class", "y axis")
     .call(d3.axisLeft(y)
-      .ticks(5)
+      .ticks(7)
       .tickSizeInner(0)
       .tickPadding(6)
       .tickSize(0, 0));
 
-  svg.append("g")
+  chart2.append("g")
     .attr("transform", "translate(0," + height + ")")
     .call(d3.axisBottom(x).ticks(7));
 
+  
+  chart2.append('text')
+  .attr('class', 'title')
+  .attr('x', width / 2 )
+  .attr('y', margin.top/2 - 50)
+  .attr('text-anchor', 'middle')
+      .text('Gráfico de Linha do Tempo dos anos 2000-20017 de '+ classe);
 
   // Add a label to the y axis
-  svg.append("text")
+  chart2.append("text")
     .attr("transform", "rotate(-90)")
-    .attr("y", 0 - 60)
+    .attr("y", 0 - 80)
     .attr("x", 0 - (height / 2))
     .attr("dy", "1em")
     .style("text-anchor", "middle")
     .text("Quantidade de Homicídios")
     .attr("class", "y axis label");
+  
+  var dataLine = []
+  sumMap.get(classe).forEach(function(d) {
+     a = {
+      "date": d.key,
+      "sum": d.value.sum
+    }
+    dataLine.push(a)
+    return dataLine
+  })
+  
+var focus = chart2.append("g")
+          .attr("class", "focus")
+          .style("display", "none");
 
+      focus.append("circle")
+          .attr("r", 5);
+
+      focus.append("rect")
+          .attr("class", "tooltip")
+          .attr("width", 140)
+          .attr("height", 50)
+          .attr("x", 10)
+          .attr("y", -22)
+          .attr("rx", 4)
+          .attr("ry", 4);
+
+      focus.append("text")
+          .attr("class", "tooltip-date")
+          .attr("x", 18)
+          .attr("y", -2);
+
+      focus.append("text")
+          .attr("x", 18)
+          .attr("y", 18)
+          .text("Homicídios: ");
+
+      focus.append("text")
+          .attr("class", "tooltip-sums")
+          .attr("x", 95)
+          .attr("y", 18);
+
+      chart2.append("rect")
+          .attr("class", "overlay")
+          .attr("width", width)
+          .attr("height", height)
+          .on("mouseover", function() { focus.style("display", null); })
+          .on("mouseout", function() { focus.style("display", "none"); })
+          .on("mousemove", mousemove);
+
+  function mousemove() {
+
+    var x0 = x.invert(d3.mouse(this)[0]),
+        i = bisectDate(dataLine, x0, 1),
+        d0 = dataLine[i - 1],
+        d1 = dataLine[i],
+        d = x0 - d0.date > d1.date - x0 ? d1 : d0;
+
+    focus.attr("transform", "translate(" + x(new Date(d.date)) + "," + y(d.sum) + ")");
+    focus.select("text").text(function() { return d.sum; });
+    focus.select(".tooltip-date").text(dateFormatter(new Date(d.date)));
+    focus.select(".tooltip-sums").text(d.sum);
+    focus.select(".x-hover-line").attr("y2", height - y(d.sum));
+    focus.select(".y-hover-line").attr("x2", width + width);
+  }
 }
 
-// Create initial graph
-initialGraph("HNN")
-
-
-// Update the data
+ // Update the data
 var updateGraph = function(selectedClasse) {
 
   updatesScales(selectedClasse)
-
+  toggleText(selectedClasse)
   // Update the Y-axis
   d3.select(".y")
     .transition()
     .duration(1500)
     .call(d3.axisLeft(y)
-      .ticks(5)
+      .ticks(7)
       .tickSizeInner(0)
       .tickPadding(6)
       .tickSize(0, 0));
 
 
+  d3.select(".title")
+       .text('Gráfico de Linha do Tempo dos anos 2000-20017 de '+ selectedClasse)
 
-  svg.selectAll("path.line")
+  chart2.selectAll("path.line")
     .data(function(d) {
       return [sumMap.get(selectedClasse)]
     })
     .transition()
     .duration(1000)
     .attr("d", function(d) {
-      console.log(d)
       return line(d)
     })
     .attr("stroke", function(d) {
       return myColor(selectedClasse)
     })
 
+    var dataLine = []
+  sumMap.get(selectedClasse).forEach(function(d) {
+     a = {
+      "date": d.key,
+      "sum": d.value.sum
+    }
+    dataLine.push(a)
+    return dataLine
+  })
+  
+  
+var focus = chart2.append("g")
+          .attr("class", "focus")
+          .style("display", "none");
 
+      focus.append("circle")
+          .attr("r", 5);
+
+      focus.append("rect")
+          .attr("class", "tooltip")
+          .attr("width", 140)
+          .attr("height", 50)
+          .attr("x", 10)
+          .attr("y", -22)
+          .attr("rx", 4)
+          .attr("ry", 4);
+
+      focus.append("text")
+          .attr("class", "tooltip-date")
+          .attr("x", 18)
+          .attr("y", -2);
+
+      focus.append("text")
+          .attr("x", 18)
+          .attr("y", 18)
+          .text("Homicídios: ");
+
+      focus.append("text")
+          .attr("class", "tooltip-sums")
+          .attr("x", 95)
+          .attr("y", 18);
+
+      chart2.append("rect")
+          .attr("class", "overlay")
+          .attr("width", width)
+          .attr("height", height)
+          .on("mouseover", function() { focus.style("display", null); })
+          .on("mouseout", function() { focus.style("display", "none"); })
+          .on("mousemove", mousemove);
+
+  function mousemove() {
+    var x0 = x.invert(d3.mouse(this)[0]),
+        i = bisectDate(dataLine, x0, 1),
+        d0 = dataLine[i - 1],
+        d1 = dataLine[i],
+        d = x0 - d0.date > d1.date - x0 ? d1 : d0;
+
+    focus.attr("transform", "translate(" + x(new Date(d.date)) + "," + y(d.sum) + ")");
+    focus.select("text").text(function() { return d.sum; });
+    focus.select(".tooltip-date").text(dateFormatter(new Date(d.date)));
+    focus.select(".tooltip-sums").text(d.sum);
+    focus.select(".x-hover-line").attr("y2", height - y(d.sum));
+    focus.select(".y-hover-line").attr("x2", width + width);
+  }
 
 }
 
+// Create initial graph
+initialGraph("HNN")
 
-// Run update function when dropdown selection changes
-classeMenu.on('change', function() {
+var node = chart1.selectAll(".node")
+  .data(bubble(nodes).descendants())
+  .enter()
+  .filter(function(d) {
+    return !d.children
+  })
+  .append("g")
+  .attr("class", "node")
+  .attr("transform", function(d) {
+    return "translate(" + d.x + "," + d.y + ")";
+  });
 
-  // Find which fruit was selected from the dropdown
-  var selectedClasse = d3.select(this)
-    .select("select")
-    .property("value")
-  //console.log(selectedClasse)
-  // Run update function with the selected fruit
-  updateGraph(selectedClasse)
+node.append("title")
+  .text(function(d) {
+    return d.Classe + ": " + d.Sum;
+  });
+
+node.append("circle")
+  .attr("r", function(d) {
+    return d.r;
+  })
+  .style("fill", function(d, i) {
+    return myColor(i);
+  })
+.on('mouseover', tip.show)
+.on('mouseout' , tip.hide)
+.on("click", function (d) {
+      updateGraph(d.data.Classe)
+})
+
+  
+node.call(tip);
+ 
+node.append("text")
+.attr("dy", "0.2em")
+.style("text-anchor", "middle")
+.style('font-family', 'Roboto')
+.style('font-weight', '100')
+.style('font-size', 20)
+.text(function(d) {
+    return d.data.Classe.substring(0, d.r / 3);
+  })
+  .attr("font-family", "sans-serif")
+  .attr("font-size", function(d) {
+    return d.r / 5;
+  })
+.style("fill", "#ffffff")
+.style('pointer-events', 'none');
 
 
-});
+
+
 
 
 })
+
