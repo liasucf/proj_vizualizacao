@@ -239,8 +239,10 @@ var chart1 = d3.select("#bubble")
   .append("svg")
   .attr("width", diameter)
   .attr("height", diameter)
-  .attr("class", "bubble");
-
+  .attr("class", "bubble")
+  .append("g")
+  .attr("transform", "translate(" + 0 + "," + 20 + ")");
+  
 
 // Adds the svg canvas
 var	chart2 = d3.select("#line")
@@ -517,7 +519,7 @@ var initialGraph = function(classe) {
   .attr('x', width / 2 )
   .attr('y', margin.top/2 - 50)
   .attr('text-anchor', 'middle')
-      .text('Gráfico de Linha do Tempo dos anos 2000-20017 de '+ classe);
+  .text('Gráfico de Linha do Tempo dos anos 2000-20017 de '+ classe);
 
   // Add a label to the y axis
   chart2.append("text")
@@ -708,6 +710,14 @@ var node = chart1.selectAll(".node")
   .attr("transform", function(d) {
     return "translate(" + d.x + "," + d.y + ")";
   });
+
+chart1.append('text')
+.attr('x', 300/2 +15 )
+.attr('y',  0)
+.attr('text-anchor', 'middle')
+.text('Gráfico de Bolhas para cada Gênero e Classe');
+
+
 
 node.append("title")
   .text(function(d) {

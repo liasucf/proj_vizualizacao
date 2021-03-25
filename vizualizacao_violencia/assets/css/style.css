@@ -9,7 +9,7 @@
 # General
 --------------------------------------------------------------*/
 body {
-  font-family: "Open Sans", sans-serif;
+  font-family: 'Fira Sans', sans-serif;
   background: #0c0b09;
   color: rgb(0, 0, 0);
 }
@@ -27,10 +27,6 @@ h1, h2, h3, h4, h5, h6 {
   font-family: "Playfair Display", serif;
 }
 
-text {
-  color: black;
-  fill: black;
-}
 /*--------------------------------------------------------------
 # Preloader
 --------------------------------------------------------------*/
@@ -616,7 +612,7 @@ text {
 --------------------------------------------------------------*/
 #hero {
   width: 100%;
-  height: 90vh;
+  height: 110vh;
   background: #B2B2B2	;
   background-size: cover;
   background-position: center;
@@ -625,11 +621,33 @@ text {
   padding: 15px 0;
 }
 
+#hero #text {
+  height: 10vh;
+  margin-bottom: 25px;
+}
+
+#hero .carousel-container{
+  height: 90vh;
+  margin: 10px;
+}
 .text_hero {
-  margin: 0;
-  
+  margin: 50;
 
 }
+
+
+#hero h3 {
+  font-size: 24px;
+  font-weight: 700;
+  color: rgb(20, 0, 0);
+  font-family: "Poppins", sans-serif;
+  position: absolute;
+  line-height: 30px;
+}
+#hero span {
+  color: #001e85;
+}
+
 
 #hero p {
   font-size: 14px;
@@ -638,7 +656,7 @@ text {
   font-family: "Poppins", sans-serif;
   background-color: rgba(255, 255, 255, 0.50) ;
   position: absolute;
-  top: 75%;
+  top: 83%;
   left: 35%;
   padding: 10px;
 }
@@ -734,43 +752,37 @@ text {
   padding-top: 60px;
 }
 
-  .d3-tip-outer {
-        position: relative;
-        }
-        .d3-tip {
-        font-family: Roboto, sans-serif;
-        font-size: 18px;
-        font-weight: 100;
-        line-height: 1;
-        padding: 16px 20px;
-        background: rgba(0, 0, 0, 0.8);
-        color: #fff;
-        border-radius: 6px;
-        }
-        .node circle {
-        transition: transform 300ms ease-in-out;
-        }
-        .node:hover circle {
-        transform: scale(1.05);
-        cursor: pointer;
-        }
-        #bubble{
-            float:left
-        }
-        #line{
-            float:left;
-            
-        }
-        #legend{
-            float:left
-        }
+.d3-tip-outer {
+  position: relative;
+  }
+  .d3-tip {
+  font-family: Roboto, sans-serif;
+  font-size: 18px;
+  font-weight: 100;
+  line-height: 1;
+  padding: 16px 20px;
+  background: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  border-radius: 6px;
+  }
+  .node circle {
+  transition: transform 300ms ease-in-out;
+  }
+  .node:hover circle {
+  transform: scale(1.05);
+  cursor: pointer;
+  }
+  #bubble{
+      float:left
+  }
+  #line{
+      float:left;
+      
+  }
+  #legend{
+      float:left
+  }
         
-text {
-  font-family: 'Fira Sans', sans-serif;
-  font-weight: 500;
-  font-size: 15px;
-  color: #081F2C;
-}
 
 
 
@@ -802,10 +814,12 @@ text {
 
     .focus text {
         font-size: 14px;
+        background-color: rgba(255, 255, 255, 0.50);
+        color: #18d26e;
     }
 
     .tooltip {
-        fill: white;
+        fill: rgb(173, 16, 16);
         stroke: #000;
     }
 

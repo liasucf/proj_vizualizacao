@@ -1,0 +1,14 @@
+{
+  "name": "@gabrieldasneves/visualizacoes-para-o-projeto-final-visualizacao-de-dados",
+  "main": "a66b46ca4a9cae78@328.js",
+  "version": "328.0.0",
+  "homepage": "https://observablehq.com/@gabrieldasneves/visualizacoes-para-o-projeto-final-visualizacao-de-dados",
+  "author": {
+    "name": "das neves",
+    "url": "https://observablehq.com/@gabrieldasneves"
+  },
+  "type": "module",
+  "peerDependencies": {
+    "@observablehq/runtime": "4"
+  }
+}

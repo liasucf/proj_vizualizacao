@@ -26,9 +26,13 @@
   <link href="assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
   <link href="assets/vendor/venobox/venobox.css" rel="stylesheet">
   <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+ 
 
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
+  <link href="assets/css/dascss.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="./inspector.css">
+
 
   <!-- =======================================================
   * Template Name: Restaurantly - v1.2.1
@@ -36,7 +40,26 @@
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
+  <style>
+    .tick-class text {
+      fill: #888;  
+      font-size: small;
+      writing-mode: tb;
+      text-anchor: middle; 
+      overflow: scroll;  
+    }
+    
+    .tick-class line {
+        overflow: scroll; 
+      stroke: #ccc;
+    }
 
+    #buildvis {
+       
+        height: 1000px;
+        overflow: scroll; 
+    }
+    </style>
   <!-- D3, DC, crossfilter in js files -->
 
   <script src='https://d3js.org/d3.v4.min.js'></script> 
@@ -50,47 +73,8 @@
 
 <body>
 
-  <!-- ======= Top Bar ======= -->
-  <!-- <div id="topbar" class="d-flex align-items-center fixed-top">
-    <div class="container d-flex">
-      <div class="contact-info mr-auto">
-        <i class="icofont-phone"></i> +1 5589 55488 55
-        <span class="d-none d-lg-inline-block"><i class="icofont-clock-time icofont-rotate-180"></i> Mon-Sat: 11:00 AM - 23:00 PM</span>
-      </div>
-      <div class="languages">
-        <ul>
-          <li>En</li>
-          <li><a href="#">De</a></li>
-        </ul>
-      </div>
-    </div>
-  </div> -->
 
-  <!-- ======= Header ======= -->
-  <!--<header id="header" class="fixed-top">
-    <-- <div class="container d-flex align-items-center">
-
-      <h1 class="logo mr-auto"><a href="index.html">Restaurantly</a></h1>
-      <-- Uncomment below if you prefer to use an image logo -->
-      <!-- <a href="index.html" class="logo mr-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
-      <!-- <nav class="nav-menu d-none d-lg-block">
-        <ul>
-          <li class="active"><a href="index.html">Home</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#menu">Menu</a></li>
-          <li><a href="#specials">Specials</a></li>
-          <li><a href="#events">Events</a></li>
-          <li><a href="#gallery">Gallery</a></li>
-          <li><a href="#chefs">Chefs</a></li>
-          <li><a href="#contact">Contact</a></li>
-          <li class="book-a-table text-center"><a href="#book-a-table">Book a table</a></li>
-        </ul>
-      </nav>.nav-menu -->
-
-   <!-- </div> -->
-  <!--</header>End Header
-
-  <-- ======= Main Page Section ======= -->
+  <!-- ======= Main Page Section ======= -->
   <section id="main-page" class="d-flex align-items-center">
     <div class="container position-relative text-center text-lg-left" data-aos="zoom-in" data-aos-delay="100">
       <div class="row">
@@ -107,11 +91,16 @@
   </section><!-- End Hero -->
 
 
-     <!-- ======= Hero Section ======= -->
+     <!-- ======= Line Section ======= -->
   <section id="hero" class="d-flex align-items-center">
     <div class="container position-relative text-center text-lg-left" data-aos="zoom-in" data-aos-delay="100">
       <!-- Slide 1 -->
         <div class="carousel-container">
+          <div id="text">
+          <h3>Inicialmente, começamos com a análise de qual era a <span>dimensão</span> da violência <br> e de como evoluía com o <span>tempo</span>.
+          </div>
+             </h3>
+             <br>
           <div id="graph">
               <div>
               <div id="bubble"></div> <div id="line"></div>
@@ -123,7 +112,24 @@
     </div>
       </div>
     </div>
-  </section><!-- End Hero -->
+  </section><!-- Line Hero -->
+
+<!-- ======= Complex Section ======= -->
+
+<section id="hero" class="d-flex align-items-center">
+  <div class="container position-relative text-center text-lg-left" data-aos="zoom-in" data-aos-delay="100">
+    <!-- Slide 1 -->
+      <div class="carousel-container">
+        <div id="graph">
+          <div>
+            <div id="buildvis"> </div>
+          </div>   
+        </div>
+    </div>
+  </div>
+</section>
+
+<!-- Complex Section -->
 
 
     <section id="about" class="about">
@@ -956,7 +962,19 @@
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
+  <script type="module">
 
+    import define from "./index.js";
+    import {Runtime, Library, Inspector} from "./runtime.js";
+    
+    const runtime = new Runtime();
+    const main = runtime.module(define, name => {
+        if (name === "buildvis"){
+            return new Inspector(document.getElementById("buildvis"));
+        }
+    });
+    
+    </script>
 </body>
 
 </html>
