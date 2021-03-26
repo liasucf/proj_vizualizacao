@@ -160,7 +160,7 @@ d3.scaleLinear()
   main.variable(observer("color")).define("color", ["d3","chartData","x"], function(d3,chartData,x){return(
 d3.scaleOrdinal()
   .domain(chartData.map(d => d.territory))
-.range(['#001e85', '#663796', '#a554a7', '#c3455b', '#93003a', x])
+ .range(['#93003a', '#663796', '#a554a7', '#c3455b', x])
 )});
   main.variable(observer("seq")).define("seq", function(){return(
 (length) => Array.apply(null, {length: length}).map((d, i) => i)

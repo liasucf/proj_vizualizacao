@@ -33,6 +33,7 @@
   <link href="assets/css/dascss.css" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="./inspector.css">
 
+  <base href="./" >
 
   <!-- =======================================================
   * Template Name: Restaurantly - v1.2.1
@@ -69,6 +70,8 @@
   <script type="text/javascript" src="https://d3js.org/d3.v4.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.7.1/d3-tip.min.js"></script>
   <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+  <script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
+
 </head>
 
 <body>
@@ -82,7 +85,7 @@
           <h1>Qual é a genêro e a raça da nossa <span>Violência?</span></h1>
          
           <div class="btns">
-            <a href="#hero" class="btn-book animated fadeInUp scrollto">Descubra!</a>
+            <a href="#test" class="btn-book animated fadeInUp scrollto">Descubra!</a>
           </div>
         </div>
         
@@ -92,14 +95,14 @@
 
 
      <!-- ======= Line Section ======= -->
-  <section id="hero" class="d-flex align-items-center">
-    <div class="container position-relative text-center text-lg-left" data-aos="zoom-in" data-aos-delay="100">
+  <section name="hero" id="hero" class="d-flex align-items-center">
+    <div class="container position-relative text-center text-lg-left" data-aos="zoom-in" data-aos-delay="100" id='/test'>
       <!-- Slide 1 -->
         <div class="carousel-container">
           <div id="text">
-          <h3>Inicialmente, começamos com a análise de qual era a <span>dimensão</span> da violência <br> e de como evoluía com o <span>tempo</span>.
+          <h3>Inicialmente, começamos com a análise de qual era a <span>dimensão</span> da violência <br> e de como evoluía com o <span>tempo</span>.</h3>
+
           </div>
-             </h3>
              <br>
           <div id="graph">
               <div>
@@ -116,16 +119,21 @@
 
 <!-- ======= Complex Section ======= -->
 
-<section id="hero" class="d-flex align-items-center">
+<section id="complex" class="d-flex align-items-center">
   <div class="container position-relative text-center text-lg-left" data-aos="zoom-in" data-aos-delay="100">
     <!-- Slide 1 -->
-      <div class="carousel-container">
+    <h3>Logo em seguida, vemos a quantidade de <span>número de hómicídios</span> por cada classe.</h3>
         <div id="graph">
           <div>
             <div id="buildvis"> </div>
           </div>   
         </div>
-    </div>
+        <div id="legend">
+          <p class="text_complex">A quantidade de Homícidios no Brasil de Homens é quase 789 mil mortes maior do que das Mulheres.</p>
+          <p class="text_complex">A quantidade de Homícidios no Brasil de Homens Negros foi aproximadamente  200 mil mortes a mais do que para Homens Não-Negros. </p>
+          <p class="text_complex">A quantidade de Homícidios no Brasil de Mulheres Negras foi quase 14 mil mortes a mais do que para Mulheres Não-Negras. </p>
+        </div>
+    
   </div>
 </section>
 
