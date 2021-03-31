@@ -612,10 +612,6 @@ h1, h2, h3, h4, h5, h6 {
   width: 100%;
   height: 110vh;
   background: #B2B2B2	;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  position: relative;
   padding: 15px 0;
 }
 
@@ -667,99 +663,16 @@ h1, h2, h3, h4, h5, h6 {
   
 }
 
-#hero .carousel-container {
-
-  bottom: 0;
-  top: 1000;
-  left: 0;
-  right: 0;
-}
-
-#hero .carousel-content {
-  text-align: center;
-  margin-top: 1000;
-}
-
-#hero .carousel-inner .carousel-item {
-  transition-property: opacity;
-  background-position: center top;
-}
-
-#hero .carousel-inner .carousel-item,
-#hero .carousel-inner .active.carousel-item-left,
-#hero .carousel-inner .active.carousel-item-right {
-  opacity: 0;
-}
-
-#hero .carousel-inner .active,
-#hero .carousel-inner .carousel-item-next.carousel-item-left,
-#hero .carousel-inner .carousel-item-prev.carousel-item-right {
-  opacity: 1;
-  transition: 0.5s;
-}
-
-#hero .carousel-inner .carousel-item-next,
-#hero .carousel-inner .carousel-item-prev,
-#hero .carousel-inner .active.carousel-item-left,
-#hero .carousel-inner .active.carousel-item-right {
-  left: 0;
-  transform: translate3d(0, 0, 0);
-}
-
-#hero .carousel-control-prev, #hero .carousel-control-next {
-  width: 10%;
-  opacity: 1;
-}
-
-#hero .carousel-control-next-icon, #hero .carousel-control-prev-icon {
-  background: none;
-  font-size: 36px;
-  line-height: 1;
-  width: auto;
-  height: auto;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 50px;
-  padding: 10px;
-  transition: 0.3s;
-  color: rgb(255, 255, 255);
-}
-
-#hero .carousel-control-next-icon:hover, #hero .carousel-control-prev-icon:hover {
-  background: rgba(109, 82, 82, 0.2);
-  color: rgba(255, 255, 255, 0.8);
-}
-
-#hero .carousel-indicators li {
-  cursor: pointer;
-  background: #fff;
-  overflow: hidden;
-  border: 0;
-  width: 12px;
-  height: 12px;
-  border-radius: 50px;
-  opacity: .6;
-  transition: 0.3s;
-}
-
-#hero .carousel-indicators li.active {
-  opacity: 1;
-  background: #f5f8f2;
-}
-
-#hero .container {
-  padding-top: 60px;
-}
 
 .d3-tip-outer {
   position: relative;
   }
   .d3-tip {
-  font-family: Roboto, sans-serif;
   font-size: 18px;
   font-weight: 100;
   line-height: 1;
   padding: 16px 20px;
-  background: rgba(0, 0, 0, 0.8);
+  background: rgba(0, 0, 0, 0.3);
   color: #fff;
   border-radius: 6px;
   }
@@ -780,9 +693,31 @@ h1, h2, h3, h4, h5, h6 {
   #legend{
       float:left
   }
-        
+  
+text {
+font-family: 'Fira Sans', sans-serif;
+font-weight: 500;
+font-size: 15px;
+color: #081F2C;
+}
 
 
+.overlay {
+fill: none;
+pointer-events: all;
+}
+
+.focus circle {
+fill: #F1F3F3;
+stroke: #6F257F;
+stroke-width: 5px;
+}
+
+.hover-line {
+stroke: #6F257F;
+stroke-width: 2px;
+stroke-dasharray: 2,4;
+}
 
 .overlay {
   fill: none;
@@ -790,41 +725,21 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .focus circle {
-  fill: #F1F3F3;
-  stroke: #6F257F;
-  stroke-width: 5px;
-}
-  
-.hover-line {
-  stroke: #6F257F;
-  stroke-width: 2px;
-  stroke-dasharray: 2,4;
+  fill: steelblue;
 }
 
-    .overlay {
-        fill: none;
-        pointer-events: all;
-    }
+.focus text {
+  font-size: 14px;
+}
 
-    .focus circle {
-        fill: steelblue;
-    }
+.tooltip-line {
+  fill: white;
+  stroke: #000;
+}
 
-    .focus text {
-        font-size: 14px;
-        background-color: rgba(255, 255, 255, 0.50);
-        color: #18d26e;
-    }
-
-    .tooltip {
-        fill: rgb(173, 16, 16);
-        stroke: #000;
-    }
-
-    .tooltip-date, .tooltip-sums {
-        font-weight: bold;
-    }
-    
+.tooltip-date, .tooltip-sums {
+  font-weight: bold;
+}
 
 @media (max-width: 992px) {
   #hero .container {
@@ -833,14 +748,9 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 html {
-  scroll-behavior: smooth;
+  scroll-behavior: auto ;
 }
 
-
-
-#hero .btn-book {
-  margin-left: 15px;
-}
 
 
 

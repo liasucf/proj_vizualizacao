@@ -549,7 +549,7 @@ var focus = chart2.append("g")
           .attr("r", 5);
 
       focus.append("rect")
-          .attr("class", "tooltip")
+          .attr("class", "tooltip-line")
           .attr("width", 140)
           .attr("height", 50)
           .attr("x", 10)
@@ -648,7 +648,7 @@ var focus = chart2.append("g")
           .attr("r", 5);
 
       focus.append("rect")
-          .attr("class", "tooltip")
+          .attr("class", "tooltip-line")
           .attr("width", 140)
           .attr("height", 50)
           .attr("x", 10)
