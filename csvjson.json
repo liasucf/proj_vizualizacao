@@ -1,0 +1,542 @@
+[
+  {
+    "cod": 5,
+    "nome": "CO",
+    "período": 2000,
+    "valor": 29.81
+  },
+  {
+    "cod": 1,
+    "nome": "N",
+    "período": 2000,
+    "valor": 19.29
+  },
+  {
+    "cod": 2,
+    "nome": "NE",
+    "período": 2000,
+    "valor": 19.78
+  },
+  {
+    "cod": 4,
+    "nome": "S",
+    "período": 2000,
+    "valor": 15.72
+  },
+  {
+    "cod": 3,
+    "nome": "SE",
+    "período": 2000,
+    "valor": 37.43
+  },
+  {
+    "cod": 5,
+    "nome": "CO",
+    "período": 2001,
+    "valor": 29.06
+  },
+  {
+    "cod": 1,
+    "nome": "N",
+    "período": 2001,
+    "valor": 19.98
+  },
+  {
+    "cod": 2,
+    "nome": "NE",
+    "período": 2001,
+    "valor": 21.92
+  },
+  {
+    "cod": 4,
+    "nome": "S",
+    "período": 2001,
+    "valor": 17.22
+  },
+  {
+    "cod": 3,
+    "nome": "SE",
+    "período": 2001,
+    "valor": 36.69
+  },
+  {
+    "cod": 5,
+    "nome": "CO",
+    "período": 2002,
+    "valor": 30.1
+  },
+  {
+    "cod": 1,
+    "nome": "N",
+    "período": 2002,
+    "valor": 21.8
+  },
+  {
+    "cod": 2,
+    "nome": "NE",
+    "período": 2002,
+    "valor": 22.45
+  },
+  {
+    "cod": 4,
+    "nome": "S",
+    "período": 2002,
+    "valor": 18.51
+  },
+  {
+    "cod": 3,
+    "nome": "SE",
+    "período": 2002,
+    "valor": 36.94
+  },
+  {
+    "cod": 5,
+    "nome": "CO",
+    "período": 2003,
+    "valor": 30.05
+  },
+  {
+    "cod": 1,
+    "nome": "N",
+    "período": 2003,
+    "valor": 23
+  },
+  {
+    "cod": 2,
+    "nome": "NE",
+    "período": 2003,
+    "valor": 24.05
+  },
+  {
+    "cod": 4,
+    "nome": "S",
+    "período": 2003,
+    "valor": 19.72
+  },
+  {
+    "cod": 3,
+    "nome": "SE",
+    "período": 2003,
+    "valor": 36.69
+  },
+  {
+    "cod": 5,
+    "nome": "CO",
+    "período": 2004,
+    "valor": 29.2
+  },
+  {
+    "cod": 1,
+    "nome": "N",
+    "período": 2004,
+    "valor": 22.1
+  },
+  {
+    "cod": 2,
+    "nome": "NE",
+    "período": 2004,
+    "valor": 22.97
+  },
+  {
+    "cod": 4,
+    "nome": "S",
+    "período": 2004,
+    "valor": 20.45
+  },
+  {
+    "cod": 3,
+    "nome": "SE",
+    "período": 2004,
+    "valor": 32.27
+  },
+  {
+    "cod": 5,
+    "nome": "CO",
+    "período": 2005,
+    "valor": 28.13
+  },
+  {
+    "cod": 1,
+    "nome": "N",
+    "período": 2005,
+    "valor": 25.07
+  },
+  {
+    "cod": 2,
+    "nome": "NE",
+    "período": 2005,
+    "valor": 25.59
+  },
+  {
+    "cod": 4,
+    "nome": "S",
+    "período": 2005,
+    "valor": 20.88
+  },
+  {
+    "cod": 3,
+    "nome": "SE",
+    "período": 2005,
+    "valor": 28.17
+  },
+  {
+    "cod": 5,
+    "nome": "CO",
+    "período": 2006,
+    "valor": 28.25
+  },
+  {
+    "cod": 1,
+    "nome": "N",
+    "período": 2006,
+    "valor": 27.01
+  },
+  {
+    "cod": 2,
+    "nome": "NE",
+    "período": 2006,
+    "valor": 27.99
+  },
+  {
+    "cod": 4,
+    "nome": "S",
+    "período": 2006,
+    "valor": 21.04
+  },
+  {
+    "cod": 3,
+    "nome": "SE",
+    "período": 2006,
+    "valor": 27.28
+  },
+  {
+    "cod": 5,
+    "nome": "CO",
+    "período": 2007,
+    "valor": 28.97
+  },
+  {
+    "cod": 1,
+    "nome": "N",
+    "período": 2007,
+    "valor": 27.25
+  },
+  {
+    "cod": 2,
+    "nome": "NE",
+    "período": 2007,
+    "valor": 30.02
+  },
+  {
+    "cod": 4,
+    "nome": "S",
+    "período": 2007,
+    "valor": 22.2
+  },
+  {
+    "cod": 3,
+    "nome": "SE",
+    "período": 2007,
+    "valor": 24.39
+  },
+  {
+    "cod": 5,
+    "nome": "CO",
+    "período": 2008,
+    "valor": 30.96
+  },
+  {
+    "cod": 1,
+    "nome": "N",
+    "período": 2008,
+    "valor": 32.06
+  },
+  {
+    "cod": 2,
+    "nome": "NE",
+    "período": 2008,
+    "valor": 32.22
+  },
+  {
+    "cod": 4,
+    "nome": "S",
+    "período": 2008,
+    "valor": 24.1
+  },
+  {
+    "cod": 3,
+    "nome": "SE",
+    "período": 2008,
+    "valor": 22.24
+  },
+  {
+    "cod": 5,
+    "nome": "CO",
+    "período": 2009,
+    "valor": 32.45
+  },
+  {
+    "cod": 1,
+    "nome": "N",
+    "período": 2009,
+    "valor": 33.75
+  },
+  {
+    "cod": 2,
+    "nome": "NE",
+    "período": 2009,
+    "valor": 33.46
+  },
+  {
+    "cod": 4,
+    "nome": "S",
+    "período": 2009,
+    "valor": 24.39
+  },
+  {
+    "cod": 3,
+    "nome": "SE",
+    "período": 2009,
+    "valor": 21.81
+  },
+  {
+    "cod": 5,
+    "nome": "CO",
+    "período": 2010,
+    "valor": 31.27
+  },
+  {
+    "cod": 1,
+    "nome": "N",
+    "período": 2010,
+    "valor": 37.96
+  },
+  {
+    "cod": 2,
+    "nome": "NE",
+    "período": 2010,
+    "valor": 35.73
+  },
+  {
+    "cod": 4,
+    "nome": "S",
+    "período": 2010,
+    "valor": 23.71
+  },
+  {
+    "cod": 3,
+    "nome": "SE",
+    "período": 2010,
+    "valor": 21.34
+  },
+  {
+    "cod": 5,
+    "nome": "CO",
+    "período": 2011,
+    "valor": 34.09
+  },
+  {
+    "cod": 1,
+    "nome": "N",
+    "período": 2011,
+    "valor": 35.07
+  },
+  {
+    "cod": 2,
+    "nome": "NE",
+    "período": 2011,
+    "valor": 36.42
+  },
+  {
+    "cod": 4,
+    "nome": "S",
+    "período": 2011,
+    "valor": 22.73
+  },
+  {
+    "cod": 3,
+    "nome": "SE",
+    "período": 2011,
+    "valor": 20.45
+  },
+  {
+    "cod": 5,
+    "nome": "CO",
+    "período": 2012,
+    "valor": 38.16
+  },
+  {
+    "cod": 1,
+    "nome": "N",
+    "período": 2012,
+    "valor": 37.25
+  },
+  {
+    "cod": 2,
+    "nome": "NE",
+    "período": 2012,
+    "valor": 39.31
+  },
+  {
+    "cod": 4,
+    "nome": "S",
+    "período": 2012,
+    "valor": 24.13
+  },
+  {
+    "cod": 3,
+    "nome": "SE",
+    "período": 2012,
+    "valor": 21.54
+  },
+  {
+    "cod": 5,
+    "nome": "CO",
+    "período": 2013,
+    "valor": 37.35
+  },
+  {
+    "cod": 1,
+    "nome": "N",
+    "período": 2013,
+    "valor": 35.86
+  },
+  {
+    "cod": 2,
+    "nome": "NE",
+    "período": 2013,
+    "valor": 39.72
+  },
+  {
+    "cod": 4,
+    "nome": "S",
+    "período": 2013,
+    "valor": 21
+  },
+  {
+    "cod": 3,
+    "nome": "SE",
+    "período": 2013,
+    "valor": 20.7
+  },
+  {
+    "cod": 5,
+    "nome": "CO",
+    "período": 2014,
+    "valor": 38.03
+  },
+  {
+    "cod": 1,
+    "nome": "N",
+    "período": 2014,
+    "valor": 36.44
+  },
+  {
+    "cod": 2,
+    "nome": "NE",
+    "período": 2014,
+    "valor": 41.91
+  },
+  {
+    "cod": 4,
+    "nome": "S",
+    "período": 2014,
+    "valor": 22.78
+  },
+  {
+    "cod": 3,
+    "nome": "SE",
+    "período": 2014,
+    "valor": 21.42
+  },
+  {
+    "cod": 5,
+    "nome": "CO",
+    "período": 2015,
+    "valor": 36.11
+  },
+  {
+    "cod": 1,
+    "nome": "N",
+    "período": 2015,
+    "valor": 39.78
+  },
+  {
+    "cod": 2,
+    "nome": "NE",
+    "período": 2015,
+    "valor": 41.07
+  },
+  {
+    "cod": 4,
+    "nome": "S",
+    "período": 2015,
+    "valor": 23.39
+  },
+  {
+    "cod": 3,
+    "nome": "SE",
+    "período": 2015,
+    "valor": 19.21
+  },
+  {
+    "cod": 5,
+    "nome": "CO",
+    "período": 2016,
+    "valor": 36.06
+  },
+  {
+    "cod": 1,
+    "nome": "N",
+    "período": 2016,
+    "valor": 44.55
+  },
+  {
+    "cod": 2,
+    "nome": "NE",
+    "período": 2016,
+    "valor": 43.68
+  },
+  {
+    "cod": 4,
+    "nome": "S",
+    "período": 2016,
+    "valor": 24.76
+  },
+  {
+    "cod": 3,
+    "nome": "SE",
+    "período": 2016,
+    "valor": 19.47
+  },
+  {
+    "cod": 5,
+    "nome": "CO",
+    "período": 2017,
+    "valor": 33.21
+  },
+  {
+    "cod": 1,
+    "nome": "N",
+    "período": 2017,
+    "valor": 47.43
+  },
+  {
+    "cod": 2,
+    "nome": "NE",
+    "período": 2017,
+    "valor": 48.58
+  },
+  {
+    "cod": 4,
+    "nome": "S",
+    "período": 2017,
+    "valor": 24.09
+  },
+  {
+    "cod": 3,
+    "nome": "SE",
+    "período": 2017,
+    "valor": 19.4
+  }
+]
