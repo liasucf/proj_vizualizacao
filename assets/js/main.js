@@ -465,7 +465,7 @@ var nodes = d3.hierarchy(dataDict)
 
 // Function to create the initial graph
 var initialGraph = function(classe) {
-
+  d3.select('.bubble-circle').attr("opacity", '1.0');
   updatesScales(classe)
   toggleText(classe)
   const path = chart2.selectAll(".line")
@@ -483,7 +483,7 @@ var initialGraph = function(classe) {
     })
     .attr("stroke-linejoin", "round")
     .attr("stroke-linecap", "round")
-    .attr("stroke-width", 1.5)
+    .attr("stroke-width", 3.5)
 
     .attr("class", "line")
   // Add path
@@ -599,6 +599,7 @@ var focus = chart2.append("g")
 
  // Update the data
 var updateGraph = function(selectedClasse) {
+  d3.select('.bubble-circle').attr("opacity", '0.5');
 
   updatesScales(selectedClasse)
   toggleText(selectedClasse)
@@ -696,8 +697,7 @@ var focus = chart2.append("g")
 
 }
 
-// Create initial graph
-initialGraph("HNN")
+
 
 var node = chart1.selectAll(".node")
   .data(bubble(nodes).descendants())
@@ -724,7 +724,7 @@ node.append("title")
     return d.Classe;
   })
 
-
+var toRemove;
 node.append("circle")
   .attr("r", function(d) {
     return d.r;
@@ -732,13 +732,21 @@ node.append("circle")
   .style("fill", function(d, i) {
     return myColor(i);
   })
+  .attr('class','bubble-circle')
+  .attr('opacity', '0.5')
 .on('mouseover', tip.show)
 .on('mouseout' , tip.hide)
 .on("click", function (d) {
-      updateGraph(d.data.Classe)
+    updateGraph(d.data.Classe)
+
+      if(toRemove){
+        d3.select(toRemove).attr("opacity", '0.5');
+    }
+    toRemove = this;
+    d3.select(this).attr("opacity", '1.0');
 })
 
-  
+//Na hora que a pagina carregar se a classe for HNN - > opacity=1.0
 node.call(tip);
  
 node.append("text")
@@ -756,7 +764,8 @@ node.append("text")
 .style("fill", "black")
 .style('pointer-events', 'none');
 
-
+// Create initial graph
+initialGraph("HNN")
 
 
 
