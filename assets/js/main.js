@@ -231,6 +231,9 @@ var margin = {
 width = 750 - margin.left - margin.right,
 height = 400 - margin.top - margin.bottom;
 
+var margin_bars = { top: 20, right: 50, bottom: 30, left: 50 },
+width_bars = 600 - margin_bars.left - margin_bars.right,
+height_bars = 350 - margin_bars.top - margin_bars.bottom;
 
 diameter =  330
 
@@ -257,6 +260,50 @@ var	legend = d3.select("#legend")
   .attr("width", 250)
   .attr("height", 150)
 
+
+var chart3 = d3.select("#bar_2000")
+.append("svg")
+  .attr("width", width_bars + margin_bars.left + margin_bars.right)
+  .attr("height", height_bars + margin_bars.top + margin_bars.bottom)
+.append("g")
+  .attr("transform", "translate(" + margin_bars.left + "," + margin_bars.top + ")");
+
+var chart4 = d3.select("#bar_2017")
+  .append("svg")
+    .attr("width", width_bars + margin_bars.left + margin_bars.right)
+    .attr("height", height_bars + margin_bars.top + margin_bars.bottom)
+  .append("g")
+    .attr("transform", "translate(" + margin_bars.left + "," + margin_bars.top + ")");
+
+  //--------------- CODIGO BARRAS AGRUPADAS -------------------------------
+
+  
+  var x0 =  d3.scaleBand()
+          .rangeRound([0, width_bars])
+          .padding(0.1);
+  
+  var x1 =  d3.scaleBand();  
+  
+  var y =  d3.scaleLinear().range([height_bars, 0]);
+  
+  var x0_2017 =  d3.scaleBand()
+          .rangeRound([0, width_bars])
+          .padding(0.1);
+  
+  var x1_2017 =  d3.scaleBand();  
+  
+  var y_2017 =  d3.scaleLinear().range([height_bars, 0]);
+
+  var color =  d3.scaleOrdinal()
+    .range(['#663796', '#a554a7', '#c3455b', '#93003a']);
+    
+  var xAxis = d3.axisBottom(x0)
+  var yAxis = d3.axisLeft(y).tickFormat(d3.format(".1f"));
+
+  var xAxis_2017 = d3.axisBottom(x0_2017)
+  var yAxis_2017 = d3.axisLeft(y_2017).tickFormat(d3.format(".1f"));
+  
+    //--------------- CODIGO BARRAS AGRUPADAS -------------------------------
 
 // create a list of keys
 var keys = ["Homens Não Negros (HNN)", "Homens Negros (HNN)", "Mulheres Não Negras (MNN)", "Mulheres Negras (MN)"]
@@ -771,4 +818,275 @@ initialGraph("HNN")
 
 
 })
+
+
+// -------------------------- GRAFICO DE BARRAS AGRUPADAS ------------------------------------- 
+
+
+d3.csv("https://raw.githubusercontent.com/liasucf/proj_vizualizacao/main/dados_vizualizacao_proj_final.csv", function (error, data) {
+  if (error) throw error;
+
+  var facts_2000 = crossfilter(data);
+  var facts_2017 = crossfilter(data);
+
+  (function() {
+    var year = facts_2000.dimension(d => d.período)
+    year.filter(2000)
+    var year_2017 = facts_2017.dimension(d => d.período)
+    year_2017.filter(2017)
+  })()
+
+  
+  var nameClass_2000 = facts_2000.dimension(d => [d.nome, d.classe]);
+  var nameClass_2017 = facts_2017.dimension(d => [d.nome, d.classe]);
+
+  var nameClassGroup = nameClass_2000.group().reduceSum(function (d) {
+    return d["taxa"];
+    
+  });
+
+  var regioesAcessor = function (d) {
+    return d.key[0];
+    
+  };
+
+  var classAcessor = function (d) {
+   
+    return d.key[1];
+  };
+
+  var taxaAcessor = function (d) {
+    return d.value;
+  };
+
+  var filteredData = nameClassGroup.all();
+
+  var className = d3.set(filteredData.map(classAcessor)).values();
+  var regioes = d3.set(filteredData.map(regioesAcessor)).values();
+  var naxTaxa = d3.max(filteredData.map(taxaAcessor));
+  // console.log(naxTaxa);
+
+  x0.domain(regioes);
+  
+    
+  x1.domain(className).rangeRound([0, x0.bandwidth()]);
+  y.domain([0, naxTaxa]);
+
+  var nestedData = d3
+    .nest()
+    .key(regioesAcessor)
+    .key(classAcessor)
+    .rollup(function (d) {
+      return { 
+        
+        value: taxaAcessor(d[0]) };
+    })
+    .entries(filteredData);
+
+  chart3
+    .append("g")
+    .attr("class", "x axis")
+    .attr("transform", "translate(0," + height + ")")
+    .call(xAxis);
+
+  chart3
+    .append("g")
+    .attr("class", "y axis")
+    .call(yAxis)
+    .append("text")
+    .attr("transform", "rotate(-90)")
+    .attr("y", 6)
+    .attr("dy", ".71em")
+    .style("text-anchor", "end")
+    .text("Taxa");
+
+  var state = chart3
+    .selectAll(".state")
+    .data(nestedData)
+    .enter()
+    .append("g")
+    .attr("class", "g")
+    .attr("transform", function (d) {
+      return "translate(" + x0(d.key) + ",0)";
+    });
+
+  state
+    .selectAll("rect")
+    .data(function (d) {
+      return d.values;
+    })
+    .enter()
+    .append("rect")
+    .attr("class", "rect-line")
+    .attr("width", x1.bandwidth())
+    .attr("x", function (d) {
+      return x1(d.key);
+    })
+    .attr("y", function (d) {
+      return y(d.value.value);
+    })
+    .attr("height", function (d) {
+      return height - y(d.value.value);
+    })
+    .style("fill", function (d) {
+      return color(d.key);
+    })
+    .call(title)
+    .on("mouseover", onMouseover)
+    .on("mouseout", onMouseout); 
+  
+    function title(g){
+       g.append("title").text(d => `${d.value.value} Taxa por 100 mil habitantes`)}
+
+
+    function onMouseover(elemData) {
+
+    d3.selectAll(".rect-line")
+    .filter( function(d) { 
+        return d.key !== elemData.key})
+              .transition()
+                .duration(500)
+                  .attr("opacity", 0.5)
+            
+
+}
+    function onMouseout(elemData) {
+
+      d3.selectAll(".rect-line")
+      .filter( function(d) { 
+        return d.key !== elemData.key})
+              .transition()
+                .duration(500)
+                  .attr("opacity", 1)
+            
+
+    }
+
+
+  var legend = chart4
+    .selectAll(".legend")
+    .data(className.slice().reverse())
+    .enter()
+    .append("g")
+    .attr("class", "legend")
+    .attr("transform", function (d, i) {
+      return "translate(0," + i * 20 + ")";
+    });
+
+  legend
+    .append("rect")
+    .attr("x", width - 18)
+    .attr("width", 18)
+    .attr("height", 18)
+    .style("fill", color);
+
+  legend
+    .append("text")
+    .attr("x", width - 24)
+    .attr("y", 9)
+    .attr("dy", ".35em")
+    .style("text-anchor", "end")
+    .text(function (d) {
+      return d;
+    });
+
+// ----------------------------- GRÁFICO DE BARRAS AGRUPADADS 2017 
+      
+      var nameClassGroup_2017 = nameClass_2017.group().reduceSum(function (d) {
+      //  console.log("taxa", d.taxa)
+        
+        return d["taxa"];
+        
+      });
+
+      var regioesAcessor_2017 = function (d) {
+        return d.key[0];
+        
+      };
+
+      var classAcessor_2017 = function (d) {
+       
+        return d.key[1];
+      };
+
+      var taxaAcessor_2017 = function (d) {
+        return d.value;
+      };
+
+      var filteredData_2017 = nameClassGroup_2017.all();
+      console.log("filteredData", filteredData_2017);
+
+      var className_2017 = d3.set(filteredData_2017.map(classAcessor_2017)).values();
+      var regioes_2017 = d3.set(filteredData_2017.map(regioesAcessor_2017)).values();
+      var naxTaxa_2017 = d3.max(filteredData_2017.map(taxaAcessor_2017));
+      // console.log(naxTaxa);
+
+
+
+      x0_2017.domain(regioes_2017);
+      x1_2017.domain(className_2017).rangeRound([0, x0_2017.bandwidth()]);
+      y_2017.domain([0, naxTaxa_2017]);
+
+      var nestedData_2017 = d3
+        .nest()
+        .key(regioesAcessor_2017)
+        .key(classAcessor_2017)
+        .rollup(function (d) {
+          return { value: taxaAcessor_2017(d[0]) };
+        })
+        .entries(filteredData_2017);
+
+      chart4
+        .append("g")
+        .attr("class", "x axis")
+        .attr("transform", "translate(0," + height + ")")
+        .call(xAxis_2017);
+
+      chart4
+        .append("g")
+        .attr("class", "y axis")
+        .call(yAxis_2017)
+        .append("text")
+        .attr("transform", "rotate(-90)")
+        .attr("y", 6)
+        .attr("dy", ".71em")
+        .style("text-anchor", "end")
+        .text("Taxa");
+
+      var state_2017 = chart4
+        .selectAll(".state")
+        .data(nestedData_2017)
+        .enter()
+        .append("g")
+        .attr("class", "g")
+        .attr("transform", function (d) {
+          return "translate(" + x0_2017(d.key) + ",0)";
+        });
+
+        state_2017
+        .selectAll("rect")
+        .data(function (d) {
+          return d.values;
+        })
+        .enter()
+        .append("rect")
+        .attr("class", "rect-line")
+        .attr("width", x1_2017.bandwidth())
+        .attr("x", function (d) {
+          // console.log("Aqui", d.values.value);
+          return x1_2017(d.key);
+        })
+        .attr("y", function (d) {
+          return y_2017(d.value.value);
+        })
+        .attr("height", function (d) {
+          return height - y_2017(d.value.value);
+        })
+        .style("fill", function (d) {
+          return color(d.key);
+        })
+        .call(title)
+        .on("mouseover", onMouseover)
+        .on("mouseout", onMouseout); 
+});
 

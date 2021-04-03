@@ -936,17 +936,29 @@ section {
   background: url("../img/img12.jpg") center center;
   background-size: cover;
   position: relative;
-  padding: 80px 0;
+  padding: 100px 0;
 }
 
 .about:before {
   content: "";
-  background: rgba(0, 0, 0, 0.8);
+  background: rgba(214, 212, 212, 0.8);
   position: absolute;
   bottom: 0;
   top: 0;
   left: 0;
   right: 0;
+}
+
+
+#bar_2000{
+  float: left;
+    width: 50%;
+  
+}
+#bar_2017{
+  float: left;
+    width: 50%;
+
 }
 
 .about .about-img {
