@@ -1272,7 +1272,7 @@ data.forEach(function(d) {
 
 
 
-var vectorColorScale = ['#00096a', '#0b238b', '#3738a5', '#564ebf', '#7266db', '#8e7ef7']
+var vectorColorScale = ['#710022', '#c34060', '#f891ad', '#7d3f99', '#974795', '#c3455b']
 
 var allYear = d3.map(data, function(d) {
   return (d.ano)
@@ -1294,7 +1294,7 @@ classeMenu
 
 var colorScale = d3.scaleQuantile()
   .domain([15, 20, 25, 35, 45, 50])
-  .range(['#00096a', '#0b238b', '#3738a5', '#564ebf', '#7266db', '#8e7ef7'])
+  .range(['#710022', '#c34060', '#f891ad', '#7d3f99', '#974795', '#c3455b'])
 
 
 
