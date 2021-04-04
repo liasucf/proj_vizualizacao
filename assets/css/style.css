@@ -9,7 +9,7 @@
 # General
 --------------------------------------------------------------*/
 body {
-  font-family: 'Fira Sans', sans-serif;
+  font-family: "Fira Sans", sans-serif;
   color: rgb(0, 0, 0);
 }
 
@@ -22,7 +22,11 @@ a:hover {
   text-decoration: none;
 }
 
-h1, h2,  h4, h5, h6 {
+h1,
+h2,
+h4,
+h5,
+h6 {
   font-family: "Playfair Display", serif;
 }
 
@@ -111,7 +115,6 @@ h1, h2,  h4, h5, h6 {
   }
 }
 
-
 /*--------------------------------------------------------------
 # Main Page Section
 --------------------------------------------------------------*/
@@ -122,7 +125,6 @@ h1, h2,  h4, h5, h6 {
   background-size: cover;
   position: relative;
   padding: 0;
-
 }
 #main-page:before {
   content: "";
@@ -132,7 +134,6 @@ h1, h2,  h4, h5, h6 {
   top: 0;
   left: 0;
   right: 0;
-
 }
 #main-page h1 {
   margin: 0;
@@ -141,13 +142,10 @@ h1, h2,  h4, h5, h6 {
   line-height: 56px;
   color: rgb(20, 0, 0);
   font-family: "Poppins", sans-serif;
-  background-color: rgba(255, 255, 255, 0.50) ;
+  background-color: rgba(255, 255, 255, 0.5);
   position: relative;
 
   left: 20%;
-
-
-
 }
 
 #main-page h1 span {
@@ -161,10 +159,9 @@ h1, h2,  h4, h5, h6 {
 }
 #main-page .btns {
   margin-top: 30px;
-  
 }
 #main-page .btn-book {
-  background-color: rgba(255, 255, 255, 0.50) ;
+  background-color: rgba(255, 255, 255, 0.5);
   font-weight: 600;
   font-size: 18px;
   letter-spacing: 0.5px;
@@ -173,10 +170,9 @@ h1, h2,  h4, h5, h6 {
   position: relative;
   padding: 10px;
   left: 60%;
-
-
 }
-#main-page .btn-menu, #hero .btn-book {
+#main-page .btn-menu,
+#hero .btn-book {
   font-weight: 600;
   font-size: 13px;
   letter-spacing: 0.5px;
@@ -190,7 +186,8 @@ h1, h2,  h4, h5, h6 {
   border: 2px solid #001e85;
 }
 
-#main-page .btn-menu:hover, #hero .btn-book:hover {
+#main-page .btn-menu:hover,
+#hero .btn-book:hover {
   background: #001e85;
   color: #fff;
 }
@@ -200,7 +197,6 @@ h1, h2,  h4, h5, h6 {
     background-attachment: fixed;
   }
 }
-
 
 @media (max-height: 500px) {
   #main-page {
@@ -244,14 +240,13 @@ h1, h2,  h4, h5, h6 {
   }
 }
 
-
 /*--------------------------------------------------------------
 # Hero Section
 --------------------------------------------------------------*/
 #hero {
   width: 100%;
   height: 110vh;
-  background: #B2B2B2	;
+  background: #b2b2b2;
   padding: 15px 0;
 }
 
@@ -260,15 +255,13 @@ h1, h2,  h4, h5, h6 {
   margin-bottom: 25px;
 }
 
-#hero .carousel-container{
+#hero .carousel-container {
   height: 90vh;
   margin: 10px;
 }
 .text_hero {
   margin: 50;
-
 }
-
 
 h3 {
   font-size: 24px;
@@ -282,32 +275,27 @@ span {
   color: #001e85;
 }
 
-
 #hero p {
   font-size: 14px;
   font-weight: 700;
   color: rgb(20, 0, 0);
   font-family: "Poppins", sans-serif;
-  background-color: rgba(255, 255, 255, 0.50) ;
+  background-color: rgba(255, 255, 255, 0.5);
   position: absolute;
   top: 83%;
   left: 35%;
   padding: 10px;
 }
 
-
 #hero #graph {
-
   width: 100%;
   height: 80vh;
-  
 }
-
 
 .d3-tip-outer {
   position: relative;
-  }
-  .d3-tip {
+}
+.d3-tip {
   font-size: 18px;
   font-weight: 100;
   line-height: 1;
@@ -315,48 +303,46 @@ span {
   background: rgba(0, 0, 0, 0.3);
   color: #fff;
   border-radius: 6px;
-  }
-  .node circle {
+}
+.node circle {
   transition: transform 300ms ease-in-out;
-  }
-  .node:hover circle {
+}
+.node:hover circle {
   transform: scale(1.05);
   cursor: pointer;
-  }
-  #bubble{
-      float:left
-  }
-  #line{
-      float:left;
-      
-  }
-  #legend{
-      float:left
-  }
-  
-text {
-font-family: 'Fira Sans', sans-serif;
-font-weight: 500;
-font-size: 15px;
-color: #081F2C;
+}
+#bubble {
+  float: left;
+}
+#line {
+  float: left;
+}
+#legend {
+  float: left;
 }
 
+text {
+  font-family: "Fira Sans", sans-serif;
+  font-weight: 500;
+  font-size: 15px;
+  color: #081f2c;
+}
 
 .overlay {
-fill: none;
-pointer-events: all;
+  fill: none;
+  pointer-events: all;
 }
 
 .focus circle {
-fill: #F1F3F3;
-stroke: #6F257F;
-stroke-width: 5px;
+  fill: #f1f3f3;
+  stroke: #6f257f;
+  stroke-width: 5px;
 }
 
 .hover-line {
-stroke: #6F257F;
-stroke-width: 2px;
-stroke-dasharray: 2,4;
+  stroke: #6f257f;
+  stroke-width: 2px;
+  stroke-dasharray: 2, 4;
 }
 
 .overlay {
@@ -377,7 +363,8 @@ stroke-dasharray: 2,4;
   stroke: #000;
 }
 
-.tooltip-date, .tooltip-sums {
+.tooltip-date,
+.tooltip-sums {
   font-weight: bold;
 }
 
@@ -388,18 +375,14 @@ stroke-dasharray: 2,4;
 }
 
 html {
-  scroll-behavior: auto ;
+  scroll-behavior: auto;
 }
-
-
-
 
 @media (min-width: 1024px) {
   #hero {
     background-attachment: fixed;
   }
 }
-
 
 @media (max-height: 500px) {
   #hero {
@@ -423,11 +406,11 @@ html {
 }
 
 @media (min-width: 1024px) {
-  #hero .carousel-control-prev, #hero .carousel-control-next {
+  #hero .carousel-control-prev,
+  #hero .carousel-control-next {
     width: 5%;
   }
 }
-
 
 /*--------------------------------------------------------------
 # Comlex General
@@ -435,7 +418,7 @@ html {
 #complex {
   width: 100%;
   height: 120vh;
-  background: #e0e0e0	;
+  background: #e0e0e0;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -447,7 +430,6 @@ html {
   height: 70vh;
   margin-top: 20px;
   margin-bottom: 40px;
-
 }
 
 #complex h3 {
@@ -467,7 +449,7 @@ html {
   font-weight: 700;
   color: rgb(20, 0, 0);
   font-family: "Poppins", sans-serif;
-  background-color: rgba(255, 255, 255, 0.50) ;
+  background-color: rgba(255, 255, 255, 0.5);
   padding: 10px;
   text-align: center;
 }
@@ -517,7 +499,6 @@ section {
   color: #001e85;
 }
 
-
 /*--------------------------------------------------------------
 # About
 --------------------------------------------------------------*/
@@ -538,21 +519,21 @@ section {
   right: 0;
 }
 
-
-#bar_2000{
+#bar_2000 {
   float: left;
-    width: 50%;
-  
+  width: 50%;
 }
-#bar_2017{
+#bar_2017 {
   float: left;
-    width: 50%;
-
+  width: 50%;
+}
+#classeDropdown {
+  float: center;
 }
 
 .about .about-img {
   position: relative;
-  transition: .5s;
+  transition: 0.5s;
 }
 
 .about .about-img img {
@@ -568,10 +549,10 @@ section {
   width: 60px;
   height: 60px;
   z-index: 1;
-  content: '';
+  content: "";
   border-left: 5px solid #001e85;
   border-top: 5px solid #001e85;
-  transition: .5s;
+  transition: 0.5s;
 }
 
 .about .about-img::after {
@@ -581,10 +562,10 @@ section {
   width: 60px;
   height: 60px;
   z-index: 2;
-  content: '';
+  content: "";
   border-right: 5px solid #001e85;
   border-bottom: 5px solid #001e85;
-  transition: .5s;
+  transition: 0.5s;
 }
 
 .about .about-img:hover {
@@ -635,13 +616,12 @@ section {
 # Why Us
 --------------------------------------------------------------*/
 .why-us {
-  background: #B2B2B2;
-
+  background: #b2b2b2;
 }
 .why-us .box {
   padding: 50px 30px;
   transition: all ease-in-out 0.3s;
-  background: #B2B2B2;
+  background: #b2b2b2;
 }
 
 .why-us .box span {
@@ -672,14 +652,16 @@ section {
   box-shadow: 10px 15px 30px rgba(0, 0, 0, 0.18);
 }
 
-.why-us .box:hover span, .why-us .box:hover h4, .why-us .box:hover p {
+.why-us .box:hover span,
+.why-us .box:hover h4,
+.why-us .box:hover p {
   color: #fff;
 }
 
 .maps {
   width: 100%;
   height: 100vh;
-  background: #e0e0e0	;
+  background: #e0e0e0;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
