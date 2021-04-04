@@ -933,8 +933,8 @@ d3.csv("https://raw.githubusercontent.com/liasucf/proj_vizualizacao/main/dados_v
     })
     .call(title)
     .on("mouseover", onMouseover)
-    .on("mouseout", onMouseout); 
-    .on("click", toggleTextBars)
+    .on("mouseout", onMouseout)
+    .on("click", toggleTextBars);
   
     function title(g){
        g.append("title").text(d => `${d.value.value} Taxa por 100 mil habitantes`)}
