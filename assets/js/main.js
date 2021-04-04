@@ -1351,7 +1351,7 @@ infoControl.onAdd = function (map) {
 
 infoControl.update = function (feat) {
     this._div.innerHTML = '<h5>Taxa de homicídios por 100 mil habitantes </h5>'   + (feat ?
-      '<b>' + feat.properties.SIGLA + " - " + feat.properties.NOME1 + '</b><br />' + regiaoMap.get(feat.properties.SIGLA) + '% de homicídios'
+      '<b>' + feat.properties.SIGLA + " - " + feat.properties.NOME1 + '</b><br />' + regiaoMap.get(feat.properties.SIGLA) + ' de homicídios'
       : 'Passe o mouse sobre uma região');
 }
 
