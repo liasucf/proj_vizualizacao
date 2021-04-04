@@ -293,6 +293,7 @@ span {
   top: 83%;
   left: 35%;
   padding: 10px;
+  border-radius : 8px;
 }
 
 
@@ -447,7 +448,6 @@ html {
   height: 70vh;
   margin-top: 20px;
   margin-bottom: 40px;
-
 }
 
 #complex h3 {
@@ -456,20 +456,29 @@ html {
   color: rgb(20, 0, 0);
   font-family: "Poppins", sans-serif;
   line-height: 30px;
+  text-align: center;
+  margin-left: 20px;
 }
 
 #complex span {
   color: #001e85;
 }
 
-#complex p {
+#complex ul {
+  
+  background-color: rgba(255, 255, 255, 0.50) ;
+  padding-right: 10px;
+  border-radius : 10px;
+  margin-top: 10px;
+
+}
+#complex li {
   font-size: 14px;
   font-weight: 700;
   color: rgb(20, 0, 0);
   font-family: "Poppins", sans-serif;
-  background-color: rgba(255, 255, 255, 0.50) ;
   padding: 10px;
-  text-align: center;
+  text-align: justify;
 }
 /*--------------------------------------------------------------
 # Comlex General

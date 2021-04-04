@@ -345,12 +345,12 @@ legend.selectAll("mylabels")
       d3.select(".text_hero")
       .transition()
       .duration(1500)
-      .text('Observando o gráfico de linhas com base no tempo, vemos que a quantidade de homicídios no Brasil de Homens Não Negros diminuiu.');}
+      .text('Analisando o gráfico de linhas com base no tempo, vemos que a quantidade de homicídios no Brasil de Homens Não Negros diminuiu 1.11% ao ano.');}
     if (classe === "HN") {
       d3.select(".text_hero")
       .transition()
       .duration(1500)
-      .text('Para os Homens Negros, temos que os assasinatos aumentaram  93.45% ao logo dos 7 anos.');}
+      .text('Para os Homens Negros, temos que os assasinatos aumentaram  93.45% ao logo dos 17 anos.');}
     if (classe === "MNN") {
       d3.select(".text_hero")
       .transition()
@@ -934,6 +934,7 @@ d3.csv("https://raw.githubusercontent.com/liasucf/proj_vizualizacao/main/dados_v
     .call(title)
     .on("mouseover", onMouseover)
     .on("mouseout", onMouseout); 
+    .on("click", toggleTextBars)
   
     function title(g){
        g.append("title").text(d => `${d.value.value} Taxa por 100 mil habitantes`)}
@@ -990,7 +991,7 @@ d3.csv("https://raw.githubusercontent.com/liasucf/proj_vizualizacao/main/dados_v
       return d;
     });
 
-// ----------------------------- GRÁFICO DE BARRAS AGRUPADADS 2017 
+// ----------------------------- GRÁFICO DE BARRAS AGRUPADADS 2017 ------------------------------
       
       var nameClassGroup_2017 = nameClass_2017.group().reduceSum(function (d) {
       //  console.log("taxa", d.taxa)
@@ -1258,7 +1259,7 @@ var series = d3.stack().keys(newData.columns)(newData).map(s => (s.map(e => (e.k
 
 
 
- // ----------------------- CODIGO DO MAPA 
+ // ----------------------- CODIGO DO MAPA -------------------------------------------
 
  d3.csv("https://raw.githubusercontent.com/liasucf/proj_vizualizacao/main/taxa-homicidios-2000-2017.csv", function(data) {
 
