@@ -345,22 +345,22 @@ legend.selectAll("mylabels")
       d3.select(".text_hero")
       .transition()
       .duration(1500)
-      .text('Ao longo dos anos, a quantidade de homicídios no Brasil de Homens Não Negros diminuiu.');}
+      .text('Observando o gráfico de linhas com base no tempo, vemos que a quantidade de homicídios no Brasil de Homens Não Negros diminuiu.');}
     if (classe === "HN") {
       d3.select(".text_hero")
       .transition()
       .duration(1500)
-      .text('Ao contrário de estastísticas de homícidos na população que diminuiram ao longo do tempo, a violência contra Homens Negros aumentou consideravelmente ao logo dos 7 anos');}
+      .text('Para os Homens Negros, temos que os assasinatos aumentaram  93.45% ao logo dos 7 anos.');}
     if (classe === "MNN") {
       d3.select(".text_hero")
       .transition()
       .duration(1500)
-      .text('A violência contra a mulher não negra se manteve praticamente estável no Brasil, mostrando o quanto essa classe racial ainda sofre uma grande influencia pelos preconceitos de genêro que não diminuiu ao longo dos anos');}
+      .text('A violência contra a Mulher Não Negra se manteve praticamente estável no Brasil, mostrando o quanto essa classe ainda sofre uma grande influência pelos preconceitos de genêro que não diminuiu ao longo dos anos.');}
     if (classe === "MN") {
       d3.select(".text_hero")
       .transition()
       .duration(1500)
-      .text('No caso de Mulheres Negras a quantidade de Homicídios quase dobrou ao longo dos anos de 2000-2017 ');}
+      .text('No caso de Mulheres Negras a quantidade de Homicídios quase dobrou ao longo dos anos de 2000-2017.');}
     }
 
 
