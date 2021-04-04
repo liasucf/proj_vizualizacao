@@ -295,7 +295,7 @@ var chart4 = d3.select("#bar_2017")
   var y_2017 =  d3.scaleLinear().range([height_bars, 0]);
 
   var color =  d3.scaleOrdinal()
-    .range(['#663796', '#a554a7', '#c3455b', '#93003a']);
+    .range(['#93003a', '#663796', '#a554a7','#c3455b']);
     
   var xAxis = d3.axisBottom(x0)
   var yAxis = d3.axisLeft(y).tickFormat(d3.format(".1f"));
@@ -306,12 +306,12 @@ var chart4 = d3.select("#bar_2017")
     //--------------- CODIGO BARRAS AGRUPADAS -------------------------------
 
 // create a list of keys
-var keys = ["Homens Não Negros (HNN)", "Homens Negros (HNN)", "Mulheres Não Negras (MNN)", "Mulheres Negras (MN)"]
+var keys = [ "Mulheres Não Negras (MNN)", "Mulheres Negras (MN)",  "Homens Não Negros (HNN)",  "Homens Negros (HN)" ]
 
 // Usually you have a color scale in your chart already
-var color = d3.scaleOrdinal()
+var color_legend = d3.scaleOrdinal()
 .domain(keys)
-.range(['#663796', '#a554a7', '#c3455b', '#93003a'])
+.range(['#c3455b', '#a554a7', '#663796',   '#93003a'])
 
 // Add one dot in the legend for each name.
 var size = 20
@@ -323,7 +323,7 @@ legend.selectAll("mydots")
   .attr("y", function(d,i){ return 30 + i*(size+5)}) // 100 is where the first dot appears. 25 is the distance between dots
   .attr("width", size)
   .attr("height", size)
-  .style("fill", function(d){ return color(d)})
+  .style("fill", function(d){ return color_legend(d)})
 
     // Add one dot in the legend for each name.
 var size = 20
@@ -1090,3 +1090,168 @@ d3.csv("https://raw.githubusercontent.com/liasucf/proj_vizualizacao/main/dados_v
         .on("mouseout", onMouseout); 
 });
 
+
+
+// ---------------------------- CODIGO GRÁFICO DE BARRAS EMPILHADOS ------------------------//
+
+var margin_empilhado = {
+  top:50,
+  right: 80,
+  bottom: 50,
+  left: 80
+},
+width_empilhado = 660 - margin_empilhado.left - margin_empilhado.right,
+height_empilhado = 475 - margin_empilhado.top - margin_empilhado.bottom
+
+var	chart5 = d3.select("#stacked")
+.append("svg")
+  .attr("width", width_empilhado + margin_empilhado.left + margin_empilhado.right)
+  .attr("height", height_empilhado + margin_empilhado.top + margin_empilhado.bottom)
+.append("g")
+  .attr("transform", "translate(" + margin_empilhado.left + "," + margin_empilhado.top + ")");
+
+  function highlight(elemData) {
+
+    d3.selectAll(".rect-group")
+    .filter( function(d) { 
+        return d.key !== elemData.key})
+              .transition()
+                .duration(500)
+                  .attr("opacity", 0.5)
+            
+
+}
+
+  function restore(elemData) {
+
+      d3.selectAll(".rect-group")
+      .filter( function(d) { 
+        return d.key !== elemData.key})
+              .transition()
+                .duration(500)
+                  .attr("opacity", 1)
+            
+
+    }
+      function title(g){
+       g.append("title").text(newData => `${d3.format(",.0f")(newData[1] - newData[0]).replace(/,/g, '.')} Mortes`)}
+    
+d3.csv("https://raw.githubusercontent.com/liasucf/proj_vizualizacao/main/dados_vizualizacao_proj_final.csv", function (error, data) {
+  if (error) throw error;
+
+  var facts_bars = crossfilter(data);
+  
+  
+ var nomeDimension = facts_bars.dimension(d => [d.nome, d.classe])
+  
+ var nomeByValorGroup = nomeDimension.group().reduceSum(function(d) {
+ return d.valor; })
+  
+var seg_data = nomeByValorGroup.all()
+
+ var newData = seg_data.reduce((retArr, data) => {
+  const subGrp = retArr.find(e => e.category === data.key[0])
+  if (subGrp && !subGrp.hasOwnProperty(data.key[1])){
+    subGrp[data.key[1]] = data.value
+  }
+  else {
+    const newSubGrp = {category: data.key[0]}
+    newSubGrp[data.key[1]] = data.value
+    retArr.push(newSubGrp)
+  }
+  
+  if (!retArr.hasOwnProperty("columns")){
+    retArr.columns = [data.key[1]]
+  }
+  else if (!retArr.columns.includes(data.key[1])) {
+    retArr.columns.push(data.key[1])
+  }
+  return retArr
+}, [])
+
+var series = d3.stack().keys(newData.columns)(newData).map(s => (s.map(e => (e.key = s.key, e)), s))
+
+
+  var subgroups = series.map(e => e.key)                
+  var color = d3.scaleOrdinal(['#93003a','#663796', '#a554a7',  '#c3455b']).domain(subgroups);
+
+   var xScale = d3.scaleBand()
+    .domain(data.map(function(d){return d.nome;}))
+    .range([0, width_empilhado])
+    .padding(0.1);
+  
+  var yScale = d3.scaleLinear()
+    .domain([0,d3.max(series, d => d3.max(d, d=> d[1]))])
+    .range([height_empilhado,0]);
+    
+   
+ var rects = chart5
+  .selectAll("g")
+  .data(series)
+  .enter()
+    .append("g")
+    .attr("class", "rect-group")
+    .each(d => console.log(d.key,color(d.key)))
+    .attr("fill", d => color(d.key))
+    .attr("opacity", 1)
+    .on("mouseover", highlight)
+    .on("mouseout", restore); 
+    
+ 
+ rects.selectAll("rect")
+    .data(function (d) {
+      return d;
+    })
+    .enter().append('rect')
+    .attr("x", (d, i) => xScale(d.data.category))
+    .attr("y", d=> yScale(d[1]))
+    .attr("height", d=> yScale(d[0]) - yScale(d[1]))
+    .attr("width", xScale.bandwidth())
+    .call(title)
+    
+  
+   const xAxis = chart5.append("g")
+    .attr("id", "xAxis")
+    .attr("transform", "translate(0,"+height_empilhado+")")
+    .call(d3.axisBottom(xScale));
+    
+      
+  const yAxis = chart5.append("g")
+    .attr("id", "yAxis")
+    .call(d3.axisLeft(yScale));
+    
+  function legend( g ){ 
+  const entry = g
+    .append("g")
+    .selectAll(".entry")
+    .data(subgroups)
+    .enter()
+    .append("g")
+    .attr(
+      "transform",
+      (d, i) => `translate(0,${(20) * i})`
+    )
+    .attr("class", "entry");
+
+  entry
+    .append("rect")
+    .attr("width", 15)
+    .attr("height", 15)
+    .attr("fill", d => color(d));
+
+  entry
+    .append("text")
+    .text(d => d)
+    .attr("x", 20)
+    .attr("y", 15 / 2)
+    .attr("dy", "0.35em")
+    .style("font", "15px sans-serif")
+    .attr("color", "black")
+}
+      chart5
+    .append("g").attr("class", "gclass")
+    .attr("transform", `translate(${width_empilhado + margin.left - 175},0)`)
+    .call(legend);
+ 
+
+  })
