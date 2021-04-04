@@ -231,7 +231,7 @@ var margin = {
 width = 750 - margin.left - margin.right,
 height = 400 - margin.top - margin.bottom;
 
-var margin_bars = { top: 20, right: 50, bottom: 30, left: 50 },
+var margin_bars = { top: 30, right: 50, bottom: 30, left: 50 },
 width_bars = 600 - margin_bars.left - margin_bars.right,
 height_bars = 350 - margin_bars.top - margin_bars.bottom;
 
@@ -337,6 +337,30 @@ legend.selectAll("mylabels")
   .text(function(d){ return d})
   .attr("text-anchor", "left")
   .style("alignment-baseline", "middle")
+
+  toggleTextBars = function(classe) {
+    if (classe === "HNN") {
+      d3.select(".text_bars")
+      .transition()
+      .duration(1500)
+      .text('A quantidade de homícidios de Homens Não-Negros nas Regiões Sul e Sudeste foram as maiores do pais ao longo dos 17 anos.');}
+    if (classe === "HN") {
+      d3.select(".text_bars")
+      .transition()
+      .duration(1500)
+      .text('Nas regiões Nordeste e Sudeste, a quantidade de homicídios de Homens Negros supera a soma de óbitos nas outras regiões do País.');}
+    if (classe === "MNN") {
+      d3.select(".text_bars")
+      .transition()
+      .duration(1500)
+      .text('A região Sudeste lidera a quantidade de homícidios de Mulheres Não-Negras ao longo dos anos de 2000 a 2017.');}
+    if (classe === "MN") {
+      d3.select(".text_bars")
+      .transition()
+      .duration(1500)
+      .text('Para Mulheres Negras, as regiões Nordeste e Sudeste superam em 16 vezes a quantidade de homícidios da região Sul. Isso pode ser explicado por causa da diversidade racial dessas regiões ser mais expressiva. ');}
+    }
+
 
 
   toggleText = function(classe) {
@@ -913,6 +937,7 @@ d3.csv("https://raw.githubusercontent.com/liasucf/proj_vizualizacao/main/dados_v
   state
     .selectAll("rect")
     .data(function (d) {
+      console.log(d)
       return d.values;
     })
     .enter()
@@ -934,7 +959,7 @@ d3.csv("https://raw.githubusercontent.com/liasucf/proj_vizualizacao/main/dados_v
     .call(title)
     .on("mouseover", onMouseover)
     .on("mouseout", onMouseout)
-    .on("click", toggleTextBars);
+
   
     function title(g){
        g.append("title").text(d => `${d.value.value} Taxa por 100 mil habitantes`)}
@@ -963,6 +988,12 @@ d3.csv("https://raw.githubusercontent.com/liasucf/proj_vizualizacao/main/dados_v
 
     }
 
+    chart3.append('text')
+    .attr('class', 'title')
+    .attr('x', width_bars / 2 )
+    .attr('y', margin_bars.top/2 - 30)
+    .attr('text-anchor', 'middle')
+    .text('Gráfico de Barras Agrupadas do ano 2000');
 
   var legend = chart4
     .selectAll(".legend")
@@ -1088,9 +1119,16 @@ d3.csv("https://raw.githubusercontent.com/liasucf/proj_vizualizacao/main/dados_v
         })
         .call(title)
         .on("mouseover", onMouseover)
-        .on("mouseout", onMouseout); 
+        .on("mouseout", onMouseout)
+      
 });
 
+    chart4.append('text')
+      .attr('class', 'title')
+      .attr('x', width_bars / 2 )
+      .attr('y', margin_bars.top/2 - 30)
+      .attr('text-anchor', 'middle')
+      .text('Gráfico de Barras Agrupadas do ano 2017');
 
 
 // ---------------------------- CODIGO GRÁFICO DE BARRAS EMPILHADOS ------------------------//
@@ -1209,7 +1247,8 @@ var series = d3.stack().keys(newData.columns)(newData).map(s => (s.map(e => (e.k
     .attr("height", d=> yScale(d[0]) - yScale(d[1]))
     .attr("width", xScale.bandwidth())
     .call(title)
-    
+    .on("click", function (d) {
+      toggleTextBars(d.key)})
   
    const xAxis = chart5.append("g")
     .attr("id", "xAxis")

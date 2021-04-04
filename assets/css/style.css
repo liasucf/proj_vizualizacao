@@ -541,6 +541,19 @@ section {
   float: center;
 }
 
+.text_bars {
+  font-size: 14px;
+  font-weight: 700;
+  color: rgb(20, 0, 0);
+  font-family: "Poppins", sans-serif;
+  padding: 10px;
+  text-align: center;
+    background-color: rgba(255, 255, 255, 0.50) ;
+    padding-right: 10px;
+    border-radius : 10px;
+    margin-top: 10px;
+}
+
 .about .about-img {
   position: relative;
   transition: 0.5s;
