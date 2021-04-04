@@ -1255,3 +1255,313 @@ var series = d3.stack().keys(newData.columns)(newData).map(s => (s.map(e => (e.k
  
 
   })
+
+
+
+ // ----------------------- CODIGO DO MAPA 
+
+ d3.csv("https://raw.githubusercontent.com/liasucf/proj_vizualizacao/main/taxa-homicidios-2000-2017.csv", function(data) {
+
+
+data.forEach(function(d) {
+  d.ano = +d['período']
+  d.valor = +d['valor']
+  d.nome = d['nome']
+});
+
+
+
+
+var vectorColorScale = ['#00096a', '#0b238b', '#3738a5', '#564ebf', '#7266db', '#8e7ef7']
+
+var allYear = d3.map(data, function(d) {
+  return (d.ano)
+}).keys()
+
+var classeMenu = d3.select("#classeDropdown")
+classeMenu
+  .append("select")
+  .selectAll("option")
+  .data(allYear)
+  .enter()
+  .append("option")
+  .attr("value", function(d) {
+    return d;
+  })
+  .text(function(d) {
+    return d;
+  })
+
+var colorScale = d3.scaleQuantile()
+  .domain([15, 20, 25, 35, 45, 50])
+  .range(['#00096a', '#0b238b', '#3738a5', '#564ebf', '#7266db', '#8e7ef7'])
+
+
+
+var mapInstance = L.map('mapid').setView([-13.1612437, -62.4787481], 4)
+
+L.tileLayer("https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png", {
+  attribution: `&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>,
+Map tiles by &copy; <a href="https://carto.com/attribution">CARTO</a>`,
+  maxZoom: 10
+}).addTo(mapInstance)
+
+
+
+function zoomToFeature(e) {
+  mapInstance.fitBounds(e.target.getBounds())
+}
+
+var initialMap = function(initialYear) {
+
+
+
+
+  var regiaoMap = new Map()
+  var ano = initialYear
+  data.forEach(function(d) {      
+    if (d.período == ano) {
+      return regiaoMap.set(d.nome, +d.valor)
+    }
+
+  })
+  function style(feature) {
+    return {
+      weight: 1,
+      opacity: 1,
+      color: 'white',
+      dashArray: '3',
+      fillOpacity: 0.6,
+      fillColor: colorScale(regiaoMap.get(feature.properties.SIGLA))
+    };
+  }
+
+
+d3.select(".info.container").remove()
+// control that shows state info on hover
+let infoControl = L.control()
+
+infoControl.onAdd = function (map) {
+  this._div = L.DomUtil.create('div', 'info container');
+  this.update();
+  return this._div;
+}
+
+
+
+infoControl.update = function (feat) {
+    this._div.innerHTML = '<h5>Taxa de homicídios por 100 mil habitantes </h5>'   + (feat ?
+      '<b>' + feat.properties.SIGLA + " - " + feat.properties.NOME1 + '</b><br />' + regiaoMap.get(feat.properties.SIGLA) + '% de homicídios'
+      : 'Passe o mouse sobre uma região');
+}
+
+infoControl.addTo(mapInstance);
+
+
+  function highlightFeature(e) {
+    var layer = e.target;
+
+    layer.setStyle({
+      weight: 2,
+      color: '#AAA',
+      dashArray: '',
+      fillOpacity: 0.7
+    });
+
+    if (!L.Browser.ie && !L.Browser.opera) {
+      layer.bringToFront();
+    }
+
+    infoControl.update(layer.feature);
+  }
+
+var legendControl = L.control({
+    position: 'bottomright'
+  });
+
+  legendControl.onAdd = function(map) {
+
+    let div = L.DomUtil.create('div', 'info legend'),
+      labels = [],
+      n = vectorColorScale.length,
+      from, to;
+
+    for (let i = 0; i < n; i++) {
+      let c = vectorColorScale[i]
+      let fromto = colorScale.invertExtent(c);
+      labels.push(
+        '<i style="background:' + vectorColorScale[i] + '"></i> ' +
+        d3.format("d")(fromto[0]) + (d3.format("d")(fromto[1]) ? '&ndash;' + d3.format("d")(fromto[1]) : '+'));
+    }
+
+    div.innerHTML = labels.join('<br>')
+    return div
+  }
+  legendControl.addTo(mapInstance)
+
+var geoj
+  function resetHighlight(e) {
+    geoj.resetStyle(e.target);
+    infoControl.update();
+  }
+
+
+  
+function onEachFeature(feature, layer) {
+    layer.on({
+      mouseover: highlightFeature,
+      mouseout: resetHighlight,
+      click: zoomToFeature
+    });
+  }
+  
+$.ajax({
+  type: "GET",
+  url: "https://raw.githubusercontent.com/liasucf/proj_vizualizacao/main/output.geojson",
+  dataType: 'json',
+  success: function (response) {
+   geoj = L.geoJson(response, {
+    style: style,
+    onEachFeature: onEachFeature
+  }).addTo(mapInstance)
+  }
+});
+ 
+
+  
+}
+
+initialMap('2000')
+
+var updateMap = function(selectedYear) {
+
+
+  var regiaoMap = new Map()
+  var ano = selectedYear
+  data.forEach(function(d) {
+    if (d.período == ano) {
+      return regiaoMap.set(d.nome, +d.valor)
+    }
+
+  })
+  
+  function style(feature) {
+    return {
+      weight: 1,
+      opacity: 1,
+      color: 'white',
+      dashArray: '3',
+      fillOpacity: 0.6,
+      fillColor: colorScale(regiaoMap.get(feature.properties.SIGLA))
+    };
+  }
+
+
+d3.select(".info.container").remove()
+// control that shows state info on hover
+let infoControl = L.control()
+
+infoControl.onAdd = function (map) {
+  this._div = L.DomUtil.create('div', 'info container');
+  this.update();
+  return this._div;
+}
+
+
+
+infoControl.update = function (feat) {
+    this._div.innerHTML = '<h5>Taxa de homicídios por 100 mil habitantes </h5>'   + (feat ?
+      '<b>' + feat.properties.SIGLA + " - " + feat.properties.NOME1 + '</b><br />' + regiaoMap.get(feat.properties.SIGLA) + '% de homicídios'
+      : 'Passe o mouse sobre uma região');
+}
+
+infoControl.addTo(mapInstance);
+
+
+  function highlightFeature(e) {
+    var layer = e.target;
+
+    layer.setStyle({
+      weight: 2,
+      color: '#AAA',
+      dashArray: '',
+      fillOpacity: 0.7
+    });
+
+    if (!L.Browser.ie && !L.Browser.opera) {
+      layer.bringToFront();
+    }
+
+    infoControl.update(layer.feature);
+  }
+ d3.select(".info.legend").remove()
+
+var legendControl = L.control({
+    position: 'bottomright'
+  });
+
+  legendControl.onAdd = function(map) {
+
+    let div = L.DomUtil.create('div', 'info legend'),
+      labels = [],
+      n = vectorColorScale.length,
+      from, to;
+
+    for (let i = 0; i < n; i++) {
+      let c = vectorColorScale[i]
+      let fromto = colorScale.invertExtent(c);
+      labels.push(
+        '<i style="background:' + vectorColorScale[i] + '"></i> ' +
+        d3.format("d")(fromto[0]) + (d3.format("d")(fromto[1]) ? '&ndash;' + d3.format("d")(fromto[1]) : '+'));
+    }
+
+    div.innerHTML = labels.join('<br>')
+    return div
+  }
+  legendControl.addTo(mapInstance)
+
+var geoj
+  function resetHighlight(e) {
+    geoj.resetStyle(e.target);
+    infoControl.update();
+  }
+
+
+  
+function onEachFeature(feature, layer) {
+    layer.on({
+      mouseover: highlightFeature,
+      mouseout: resetHighlight,
+      click: zoomToFeature
+    });
+  }
+  
+$.ajax({
+  type: "GET",
+  url: "https://raw.githubusercontent.com/liasucf/proj_vizualizacao/main/output.geojson",
+  dataType: 'json',
+  success: function (response) {
+   geoj = L.geoJson(response, {
+    style: style,
+    onEachFeature: onEachFeature
+  }).addTo(mapInstance)
+  }
+});
+ 
+}
+// Run update function when dropdown selection changes
+classeMenu.on('change', function() {
+
+  // Find which fruit was selected from the dropdown
+  var selectedYear = d3.select(this)
+    .select("select")
+    .property("value")
+  //console.log(selectedClasse)
+  // Run update function with the selected fruit
+  updateMap(selectedYear)
+
+
+});
+
+
+})
