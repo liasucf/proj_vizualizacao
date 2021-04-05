@@ -505,7 +505,12 @@ html {
   margin: 0 100px 0 100px; 
 
 }
-
+.carousel-control-next-icon{
+background-color:#001e85;
+}
+.carousel-control-prev-icon{
+background-color: #001e85;
+}
 .barras-agrupadas {
   display: flex;
   flex-direction: row;
