@@ -287,7 +287,29 @@ span {
   padding: 10px;
   border-radius : 8px;
 }
+#graph_bars {
+  position: relative;
+    overflow: hidden;
+    margin-bottom: 50px;
 
+}
+#graph_maps{
+  display: flex;
+  justify-content: center;
+  justify-items: center;
+  justify-self: center;
+  align-items: center;
+}
+
+#select-year{
+  display: flex;
+  flex-direction: row ;
+ 
+}
+#select-year h4{
+  margin-right: 10px;
+  padding-bottom:10px ;
+}
 #hero #graph {
   width: 100%;
   height: 80vh;
@@ -480,6 +502,16 @@ html {
   flex-direction: row;
   padding: 15px;
   align-items: center;
+  margin: 0 100px 0 100px; 
+
+}
+
+.barras-agrupadas {
+  display: flex;
+  flex-direction: row;
+  padding: 15px;
+  align-items: center;
+  margin: 0 100px 0 100px 
 }
 
 #why-us p {
@@ -570,12 +602,29 @@ section {
   float: center;
 }
 
+.text_bars_agrupadas {
+  width: 500px;
+  height: 80px;
+  font-size: 14px;
+  font-weight: 700;
+  color: rgb(20, 0, 0);
+  font-family: "Poppins", sans-serif;
+  padding: 10px;
+
+  text-align: center;
+    background-color: rgba(255, 255, 255, 0.50) ;
+    padding-right: 10px;
+    border-radius : 10px;
+    margin-top: 10px;
+}
+
 .text_bars {
   font-size: 14px;
   font-weight: 700;
   color: rgb(20, 0, 0);
   font-family: "Poppins", sans-serif;
   padding: 10px;
+  width: 100px;
   text-align: center;
     background-color: rgba(255, 255, 255, 0.50) ;
     padding-right: 10px;
@@ -674,7 +723,7 @@ section {
 .maps {
   width: 100%;
   height: 100vh;
-  background: #e0e0e0;
+  background: #cfcdcd;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
