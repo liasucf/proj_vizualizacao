@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Restaurantly Bootstrap Template - Index</title>
+  <title>Qual é a gênero e a raça da nossa Violência?</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -87,6 +87,7 @@
 				margin-right: 8px;
 				opacity: 0.7;
 			}
+     
 
     </style>
 
@@ -108,11 +109,11 @@
   <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
   <script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
   <script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
-        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
-        integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
-        crossorigin=""/>
-        <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
-        integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+    integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+    crossorigin=""/>
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+    integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
 
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
@@ -144,7 +145,7 @@
           <h1>Qual é a genêro e a raça da nossa <span>Violência?</span></h1>
          
           <div class="btns">
-            <a href="#hero_scroll" class="btn-book animated fadeInUp scrollto">Descubra!</a>
+            <a href="#hero_scroll" class="btn-book animated fadeInUp scrollto"> Descubra aqui!</a>
           </div>
         </div>
         
@@ -176,21 +177,27 @@
     </div>
   </section><!-- Line Hero -->
 
+  
 <!-- ======= Complex Section ======= -->
 
 <section id="complex" class="d-flex align-items-center">
-  <div class="container position-relative text-center text-lg-left" data-aos="zoom-in" data-aos-delay="100">
+  <div class="container position-relative text-center center" data-aos="zoom-in" data-aos-delay="100">
     <!-- Slide 1 -->
-    <h3>Logo em seguida, vemos a quantidade de <span>número de hómicídios</span> por cada classe.</h3>
+    <h3>Logo em seguida, vemos a quantidade de <span>número de hómicídios</span> <br> por cada classe entre 2000 a 2017.</h3>
+    <br>
+    <br>
         <div id="graph">
           <div>
             <div id="buildvis"> </div>
           </div>   
         </div>
         <div id="legend">
-          <p class="text_complex">A quantidade de Homícidios no Brasil de Homens é quase 789 mil mortes maior do que das Mulheres.</p>
-          <p class="text_complex">A quantidade de Homícidios no Brasil de Homens Negros foi aproximadamente  200 mil mortes a mais do que para Homens Não-Negros. </p>
-          <p class="text_complex">A quantidade de Homícidios no Brasil de Mulheres Negras foi quase 14 mil mortes a mais do que para Mulheres Não-Negras. </p>
+            <ul class="text_complex">
+              <li> A quantidade de Homícidios no Brasil de Homens é quase 789 mil mortes maior do que das Mulheres.</li>
+              <li>A quantidade de Homícidios no Brasil de Homens Negros foi aproximadamente  200 mil mortes a mais do que para Homens Não-Negros.</li>
+              <li>A quantidade de Homícidios no Brasil de Mulheres Negras foi quase 14 mil mortes a mais do que para Mulheres Não-Negras. </li>
+            </ul>
+
         </div>
     
   </div>
@@ -198,93 +205,110 @@
 
 <!-- Complex Section -->
 
+  <!-- ======= Specials Section ======= -->
+  <section id="maps" class="maps">
+    <div class="container" data-aos="fade-up">
+      <h3>Análise de Homicídios em uma Mapa <span>por cada região do Brasil</span> de cada ano entre 2000 a 2017.</h3>
+      <br>
+      <br>
+      <br>
+<br>
+<div id="select-year">
+      <h4>Selecione o ano:</h4><div id ="classeDropdown"></div>
+    </div>
+      <div id="graph_maps">
+      <div id="mapid" >
+      </div>
+       
+    </div>
+  </section><!-- End Specials Section -->
+
 
     <section id="about" class="about">
       <div class="container" data-aos="fade-up">
-        <h3>Comparamos os anos de 2000 e 2017, para vermos a mudaça na <span>taxa de homicídio</span> em cada classe.</h3>
+        <h3>Comparamos os anos de 2000 e 2017, para vermos a mudaça na <span>taxa de homicídio</span> pelo <span>Gênero</span> e a <span>Raça</span> em cada <span>Região</span>  do Brasil </h3>
         <br>
         <br>
         <br>
-
+        <br>
             <div id="graph_bars">
               <div>
               <div id="bar_2000"></div><div id="bar_2017"></div>
             </div>
-              <br>
+          </div>
+        </div>
+        <div id="carouselExampleControls" class="container carousel slide" data-ride="carousel">
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <div class='barras-agrupadas' >
+              <p class="text_bars_agrupadas">No ano de 2000, a taxa de homicídios para Homens Negros era maior na Região Sudeste e as Regiões Nordeste e Sudeste tinham as menores.</p>
+              <p class="text_bars_agrupadas">Em 2017, para Homens Negros as regiões Norte e Nordeste tiverem um aumento considerável na taxa e ao contrário a taxa da região Sudeste diminuiu 43.26% .</p>
+            </div>
+          </div>
+            <div class="carousel-item">
+              <div class='barras-agrupadas' >
+                <p class="text_bars_agrupadas">Em 2000, o Sudeste, Centro-Oeste e Norte tinha as taxas de homicídios de Homens Não-Negros por 100 mil habitantes mais altas.</p>
+                <p class="text_bars_agrupadas">Para 2017, todas as regiões tiveram uma diminuição na taxa de Homicídio de Homens Não-Negros menos o Nordeste que permanceu quase igual. </p>
+              </div>            
+            </div>
+            <div class="carousel-item">
+              <div class='barras-agrupadas' >
+                <p class="text_bars_agrupadas">Para o ano de 2000, as taxas de homicídio para Mulheres Negras eram bem similares. A região Sudeste tinha a maior taxa e a Nordeste a menor.</p>
+                <p class="text_bars_agrupadas">Em 2017, em todas as regiões todas as taxas cresceram com excecão do Sudeste</p>
+              </div>
+          </div>
+          <div class="carousel-item">
+            <div class='barras-agrupadas' >
+              <p class="text_bars_agrupadas">No ano de 2000, as Regiões do Centro-Oeste e Sudeste lideravam as taxas de homícidio para Mulheres Não-Negras.</p>
+              <p class="text_bars_agrupadas">Ao comparam com o ano de 2017 observa-se pouco aumento entre as taxas para as Mulheres Não-Negras.</p>
             </div>
         </div>
-
-      </div>
+          </div>
+          <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
+        </div>
+         
+       
+        
     </section><!-- End About Section -->
-
+   
     <!-- ======= Why Us Section ======= -->
     <section id="why-us" class="why-us">
       <div class="container" data-aos="fade-up">
 
-        <section class="d-flex align-items-center">
           <div class="container position-relative text-center text-lg-left" data-aos="zoom-in" data-aos-delay="100">
-            <h3>Ao analisar por cada <span>Região</span> do Brasil, comparamos o <span>número de hómicídios</span> por cada classe.</h3>
+            <h3>Ao analisar por cada <span>Região</span> do Brasil, comparamos o <span>número de hómicídios</span> por cada classe dos anos 2000 a 2017.</h3>
             <br>
+              <div class="barras-empilhadas">
                 <div id="graph">
                   <div>
                     <div id="stacked"> </div>
                   </div>   
-                </div>    
+                </div>   
+                <div id="legend"></div> <p class="text_bars">Clique no Gráfico para saber mais!</p> 
           </div>
-        </section>
 
       </div>
     </section><!-- End Why Us Section -->
 
    
 
-    <!-- ======= Specials Section ======= -->
-    <section id="maps" class="maps">
-      <div class="container" data-aos="fade-up">
-        <div id = "classeDropdown"></div>
-<br>
-<br>
-        <div id="graph_maps">
-        <div id="mapid" >
-        </div>
-      </div>
-    </section><!-- End Specials Section -->
-
   
     
   <!-- ======= Footer ======= -->
   <footer id="footer">
-    <div class="footer-top">
-      <div class="container">
-        <div class="row">
-
-          <div class="col-lg-3 col-md-6">
-            <div class="footer-info">
-              <h3>Restaurantly</h3>
-              <p>
-                A108 Adam Street <br>
-                NY 535022, USA<br><br>
-                <strong>Phone:</strong> +1 5589 55488 55<br>
-                <strong>Email:</strong> info@example.com<br>
-              </p>
-              
-
-          </div>
-
-        </div>
-      </div>
-    </div>
+     
 
     <div class="container">
       <div class="copyright">
-        &copy; Copyright <strong><span>Restaurantly</span></strong>. All Rights Reserved
-      </div>
-      <div class="credits">
-        <!-- All the links in the footer should remain intact. -->
-        <!-- You can delete the links only if you purchased the pro version. -->
-        <!-- Licensing information: https://bootstrapmade.com/license/ -->
-        <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/restaurantly-restaurant-template/ -->
-        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+        &copy;  Developped by Gabriel Das Neves, Guilherme Alves and Lia Sucupira <br>
+        @gabrieldasneves - @alvesgui - @liasucf 
       </div>
     </div>
   </footer><!-- End Footer -->
