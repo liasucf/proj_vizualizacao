@@ -213,13 +213,23 @@
       <br>
       <br>
 <br>
-<div id="select-year">
-      <h4>Selecione o ano:</h4><div id ="classeDropdown"></div>
-    </div>
-      <div id="graph_maps">
-      <div id="mapid" >
+  <div id="select-year">
+      <h5>Selecione o ano:</h5>
+      <div id ="classeDropdown">
+
       </div>
+    </div>
+      
+    <div id="graph_maps">
+      <div id="mapid" >
+    </div>
        
+    </div>
+    <br>
+    <div class="legend-map">
+      <div id="legend"> 
+        <p>Faça a análise nas regiões e observe diferentes taxas ao longo dos anos</p>
+      </div>
     </div>
   </section><!-- End Specials Section -->
 
@@ -237,14 +247,15 @@
             </div>
           </div>
         </div>
+        
         <div id="carouselExampleControls" class="container carousel slide" data-ride="carousel">
           <div class="carousel-inner">
             <div class="carousel-item active">
               <div class='barras-agrupadas' >
-              <p class="text_bars_agrupadas">No ano de 2000, a taxa de homicídios para Homens Negros era maior na Região Sudeste e as Regiões Nordeste e Sudeste tinham as menores.</p>
-              <p class="text_bars_agrupadas">Em 2017, para Homens Negros as regiões Norte e Nordeste tiverem um aumento considerável na taxa e ao contrário a taxa da região Sudeste diminuiu 43.26% .</p>
+                <p class="text_bars_agrupadas">No ano de 2000, a taxa de homicídios para Homens Negros era maior na Região Sudeste e as Regiões Nordeste e Sudeste tinham as menores.</p>
+                <p class="text_bars_agrupadas">Em 2017, para Homens Negros as regiões Norte e Nordeste tiverem um aumento considerável na taxa e ao contrário a taxa da região Sudeste diminuiu 43.26% .</p>
+              </div>
             </div>
-          </div>
             <div class="carousel-item">
               <div class='barras-agrupadas' >
                 <p class="text_bars_agrupadas">Em 2000, o Sudeste, Centro-Oeste e Norte tinha as taxas de homicídios de Homens Não-Negros por 100 mil habitantes mais altas.</p>
@@ -256,13 +267,13 @@
                 <p class="text_bars_agrupadas">Para o ano de 2000, as taxas de homicídio para Mulheres Negras eram bem similares. A região Sudeste tinha a maior taxa e a Nordeste a menor.</p>
                 <p class="text_bars_agrupadas">Em 2017, em todas as regiões todas as taxas cresceram com excecão do Sudeste</p>
               </div>
-          </div>
-          <div class="carousel-item">
-            <div class='barras-agrupadas' >
-              <p class="text_bars_agrupadas">No ano de 2000, as Regiões do Centro-Oeste e Sudeste lideravam as taxas de homícidio para Mulheres Não-Negras.</p>
-              <p class="text_bars_agrupadas">Ao comparam com o ano de 2017 observa-se pouco aumento entre as taxas para as Mulheres Não-Negras.</p>
             </div>
-        </div>
+            <div class="carousel-item">
+              <div class='barras-agrupadas' >
+                <p class="text_bars_agrupadas">No ano de 2000, as Regiões do Centro-Oeste e Sudeste lideravam as taxas de homícidio para Mulheres Não-Negras.</p>
+                <p class="text_bars_agrupadas">Ao comparam com o ano de 2017 observa-se pouco aumento entre as taxas para as Mulheres Não-Negras.</p>
+              </div>
+            </div>
           </div>
           <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>

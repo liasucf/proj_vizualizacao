@@ -510,6 +510,15 @@ html {
   margin: 0 100px 0 100px;
 }
 
+.carousel-control-next-icon{
+  background-color:#001e85;
+  margin-left: 130px;
+  }
+  .carousel-control-prev-icon{
+  background-color: #001e85;
+  margin-right: 130px;
+  }
+
 .barras-agrupadas {
   display: flex;
   flex-direction: row;
