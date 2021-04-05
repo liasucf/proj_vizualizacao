@@ -1007,14 +1007,14 @@ d3.csv("https://raw.githubusercontent.com/liasucf/proj_vizualizacao/main/dados_v
 
   legend
     .append("rect")
-    .attr("x", width - 18)
+    .attr("x", width_bars - 18)
     .attr("width", 18)
     .attr("height", 18)
     .style("fill", color);
 
   legend
     .append("text")
-    .attr("x", width - 24)
+    .attr("x", width_bars - 24)
     .attr("y", 9)
     .attr("dy", ".35em")
     .style("text-anchor", "end")
